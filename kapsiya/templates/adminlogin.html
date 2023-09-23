@@ -1,15 +1,45 @@
 {% extends 'homebase.html' %}
-
+{% load static %}
 {% block content %}
 <br>
 <br>
 <br>
+<head>
+    <style>
+        body{
+            background-color: #1a405c;
+        }
+        .jumbotron{
+            text-align: center;
+        }
+        .btn-primary{
+            background-color: #1a405c; ;
+            pointer-events: none;
+           
+        }
+        img{
+            border-radius: 50%;
+            width: 150px;
+            padding: 15px;
+            float: initial;
+        }
+        img:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron">
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            <h2>Please Login To Your Account</h2>
+            <img src="{% static 'images/admin.png' %}" alt="Kevin">
+            {{form.as_p}}
+            <input type="submit" value="Login"/>
+        </form>
+    </div>
+</body>
 
-<form method="POST" novalidate>
-	{% csrf_token %}
-	<h2>Login</h2>
-	{{form.as_p}}
-	<input type="submit" value="Login" />
-</form>
+
 
 {% endblock content%}
