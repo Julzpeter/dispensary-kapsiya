@@ -1,11 +1,28 @@
 {% extends 'homebase.html' %}
-
+{% load static %}
 {% block content %}
 <br><br><br>
 <head>
     <style>
         body{
             background-color: #1a405c;
+        }
+        .jumbotron{
+            text-align: center;
+        }
+        .btn-primary{
+            background-color: #1a405c; ;
+            pointer-events: none;
+           
+        }
+        img{
+            border-radius: 50%;
+            width: 150px;
+            padding: 15px;
+            float: initial;
+        }
+        img:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
         }
     </style>
 </head>
@@ -14,6 +31,7 @@
         <form method="POST" novalidate>
             {% csrf_token %}
             <h2>Hello Admin, Please Sign Up</h2>
+            <img src="{% static 'images/admin.png' %}" alt="Kevin">
             {% for field in form %}
             <p>
                 {% if field.errors %}
@@ -26,10 +44,17 @@
                 {{ field.label_tag }}{{ field }}
             </p>	
             {% endfor %}
-            <input type="submit" value="Register" />
+            <a class="btn btn-primary btn-md" style="color: white;" role="button">SignUp</a>
+            <div class="text-center">Already have an account? <a href=" {% url adminlogin %}">Login here</a></div>
+            <br>
+            <br>
+
+            
         </form>
+        
 
     </div>
+    {% include "footer.html" %}
 </body>
 
 

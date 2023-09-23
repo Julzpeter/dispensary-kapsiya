@@ -49,7 +49,7 @@ def admin_signup_view(request):
                 user = form.save(commit=False)
                 user.username = user.username.lower()
                 user.save()
-                my_admin_group = Group.objects,get_or_create(name='ADMIN')
+                my_admin_group = Group.objects.get_or_create(name='ADMIN')
                 my_admin_group[0].user_set.add(user)
                 messages.success(request, 'You have singed up successfully.')
                 return HttpResponseRedirect('adminlogin')
