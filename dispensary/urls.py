@@ -15,9 +15,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from kapsiya import views
+from django.contrib.auth.views import LoginView,LogoutView
 urlpatterns = [
-    path("", include("kapsiya.urls")),
+    
     path('admin/', admin.site.urls),
+    path('', views.home_view, name=''),
+    
+
+    path('adminclick/', views.adminclick_view),
+    
+    path('adminsignup/', views.admin_signup_view, name='adminsignup'),
+
+    path('adminlogin/', LoginView.as_view(template_name='adminlogin.html')),
+
+    path('afterlogin', views.afterlogin_view,name='afterlogin'),
+    path('logout/', LogoutView.as_view(template_name='index.html'),name='logout'),
+
+    path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
+    
+
+   
     
 ]
