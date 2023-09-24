@@ -35,7 +35,9 @@ urlpatterns = [
     path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
     #url for the side bar for the doctor
     path('admin-doctor', views.admin_doctor_view, name='admin-doctor'),
-     #url for the side bar for the patient
+    path('admin-view-doctor', views.admin_view_doctor_view, name='admin-view-doctor'),
+
+    #url for the side bar for the patient
     path('admin-patient', views.admin_patient_view, name='admin-patient'),
     #url for the side bar for the appointment
     path('admin-appointment',views.admin_appointment_view, name='admin-appointment'),
