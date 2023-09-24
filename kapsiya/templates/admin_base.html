@@ -5,14 +5,14 @@
 <head>
   <meta charset="UTF-8">
   <title>AdminBase</title>
-
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <link rel="stylesheet" href="{% static '/style.css' %}">
+  
 
 
   <style media="screen">
@@ -27,16 +27,8 @@
     a:hover {
       color: white;
     }
-
-
-
-
-    
-
-
-
     body {
-
+     
       padding-left: 240px;
     }
     main {
@@ -45,7 +37,7 @@
     }
 
     .menu {
-      background: #5bc995;
+      background: #1a405c;
       height: 100vh;
       width: 240px;
       position: fixed;
@@ -53,6 +45,7 @@
       left: 0;
       z-index: 5;
       outline: none;
+      color: white;
     }
     .menu .avatar {
       background: rgba(0, 0, 0, 0.1);
@@ -63,7 +56,7 @@
       width: 100px;
       border-radius: 50%;
       overflow: hidden;
-      border: 4px solid #ffea92;
+      border: 4px solid #1a405c;
       box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
     }
     .menu .avatar h2 {
@@ -183,7 +176,7 @@
         height: 40px;
         position: absolute;
         left: 100%;
-        background: #5bc995;
+        background: #ddd0c8;
       }
       .menu .smartphone-menu-trigger:before,
       .menu .smartphone-menu-trigger:after {
@@ -224,7 +217,7 @@
   <nav class="menu" tabindex="0">
     <div class="smartphone-menu-trigger"></div>
     <header class="avatar">
-      <img src="{% static 'images/adminpropic.png'%}" />
+      <img src="{% static 'images/admin.png'%}" />
       <br><br>
       <h6>Admin</h6>
       <h2>{{request.user.first_name}}</h2>
@@ -242,7 +235,7 @@
 
     <!-- nav start -->
     <div class="bs-example">
-      <nav class="navbar navbar-expand-md  navbar-dark fixed-top" style="background:#337AB7;">
+      <nav class="navbar navbar-expand-md  navbar-dark fixed-top" style="background:#1a405c;">
         <a href="/admin-dashboard" class="navbar-brand">DISPENSARY PATIENT TRACKING SYSTEM</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
           <span class="navbar-toggler-icon"></span>
@@ -250,7 +243,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
           <div class="navbar-nav" style=" margin-left: 90%;">
 
-            <a href="/logout" class="nav-item nav-link">Logout</a>
+            <a href="/logout" class="nav-item nav-link" style="color: white;">Logout</a>
           </div>
         </div>
       </nav>
