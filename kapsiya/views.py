@@ -117,3 +117,8 @@ def admin_doctor_view(request):
 @user_passes_test(is_admin)
 def admin_patient_view(request):
     return render(request, 'admin_patient.html')
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_appointment_view(request):
+    return render(request,'admin_appointment.html')

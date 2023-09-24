@@ -33,10 +33,12 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='index.html'),name='logout'),
 
     path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
-
+    #url for the side bar for the doctor
     path('admin-doctor', views.admin_doctor_view, name='admin-doctor'),
-    
+     #url for the side bar for the patient
     path('admin-patient', views.admin_patient_view, name='admin-patient'),
+    #url for the side bar for the appointment
+    path('admin-appointment',views.admin_appointment_view, name='admin-appointment'),
 
 
    
