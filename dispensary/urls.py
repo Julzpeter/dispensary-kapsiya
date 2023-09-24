@@ -36,6 +36,7 @@ urlpatterns = [
     #url for the side bar for the doctor
     path('admin-doctor', views.admin_doctor_view, name='admin-doctor'),
     path('admin-view-doctor', views.admin_view_doctor_view, name='admin-view-doctor'),
+    #path('admin-add-doctor', views.admin_add_doctor_view, name='admin-add-doctor'),
 
     #url for the side bar for the patient
     path('admin-patient', views.admin_patient_view, name='admin-patient'),

@@ -111,7 +111,7 @@ def admin_dashboard_view(request):
 @user_passes_test(is_admin)
 def admin_doctor_view(request):
     return render(request, 'admin_doctor.html')
-    
+
 #view for the nurses's record, register nurse and approve nurse cards
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -128,3 +128,4 @@ def admin_patient_view(request):
 @user_passes_test(is_admin)
 def admin_appointment_view(request):
     return render(request,'admin_appointment.html')
+
