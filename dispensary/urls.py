@@ -36,6 +36,8 @@ urlpatterns = [
 
     path('admin-doctor', views.admin_doctor_view, name='admin-doctor'),
     
+    path('admin-patient', views.admin_patient_view, name='admin-patient'),
+
 
    
     
