@@ -105,3 +105,9 @@ def admin_dashboard_view(request):
     'pendingappointmentcount':pendingappointmentcount,
     }
     return render(request,'admin_dashboard.html',context=mydict)
+
+##VIEWS FOR THE SIDE BAR ON THE ADMIN DASHBOARD
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_doctor_view(request):
+    return render(request, 'admin_doctor.html')
