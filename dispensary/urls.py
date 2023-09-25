@@ -24,6 +24,7 @@ urlpatterns = [
     
 
     path('adminclick/', views.adminclick_view),
+    path('doctorclick/', views.doctorclick_view),
     
     path('adminsignup/', views.admin_signup_view, name='adminsignup'),
 

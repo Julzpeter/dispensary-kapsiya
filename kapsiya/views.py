@@ -17,6 +17,11 @@ def adminclick_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
     return render(request, 'adminclick.html')
+
+def doctorclick_view(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('afterlogin')
+    return render(request, 'doctorclick.html')
 """
 def sign_in(request):
     if request.method == 'GET':
