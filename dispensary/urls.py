@@ -22,12 +22,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_view, name=''),
     
-
+    #url patterns for the navbar
     path('adminclick/', views.adminclick_view),
-    path('doctorclick/', views.doctorclick_view),
-    
+    path('doctorclick/', views.doctorclick_view),  
     path('adminsignup/', views.admin_signup_view, name='adminsignup'),
-
+    path('doctorsignup/', views.doctor_signup_view, name='doctorsignup'), 
     path('adminlogin/', LoginView.as_view(template_name='adminlogin.html')),
 
     path('afterlogin', views.afterlogin_view,name='afterlogin'),

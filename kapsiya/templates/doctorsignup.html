@@ -10,7 +10,11 @@
         .jumbotron{
             text-align: center;
         }
-    
+        .btn-primary{
+            background-color: #1a405c; ;
+            pointer-events: none;
+           
+        }
         img{
             border-radius: 50%;
             width: 150px;
@@ -26,8 +30,8 @@
     <div class="jumbotron">
         <form method="POST" novalidate>
             {% csrf_token %}
-            <h2>Hello Admin, Please Sign Up</h2>
-            <img src="{% static 'images/admin.png' %}" alt="Kevin">
+            <h2>Hello Nurse, Please Sign Up</h2>
+            <img src="{% static 'images/nurse.png' %}" alt="Joan">
             {% for field in form %}
             <p>
                 {% if field.errors %}
@@ -40,8 +44,8 @@
                 {{ field.label_tag }}{{ field }}
             </p>	
             {% endfor %}
+            <!--<a class="btn btn-primary btn-md" style="color: white;" role="button">SignUp</a>-->
             <button type="submit" class="btnSubmit">Submit</button>
-            
             <div class="text-center">Already have an account? <a href=" {% url adminlogin %}">Login here</a></div>
             <br>
             <br>

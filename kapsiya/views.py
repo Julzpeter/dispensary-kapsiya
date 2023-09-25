@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from .forms import AdminSignUpForm
+from .forms import AdminSignUpForm,DoctorSignUpForm
 from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required,user_passes_test
-from . import models
+from . import models,forms
 # Create your views here.
 def home_view(request):
     if request.user.is_authenticated:
@@ -59,6 +59,24 @@ def admin_signup_view(request):
                 messages.success(request, 'You have singed up successfully.')
                 return HttpResponseRedirect('adminlogin')
     return render(request,'adminsignup.html', {'form': form})
+
+def doctor_signup_view(request):
+    
+    if request.method == 'GET':
+        form = DoctorSignUpForm()
+        return render(request, 'doctorsignup.html', {'form': form})  
+    if request.method == 'POST':
+            form = DoctorSignUpForm(request.POST)
+            if form.is_valid():
+                user = form.save(commit=False)
+                #user.username = user.username.lower()
+                user.save()
+                my_doctor_group = Group.objects.get_or_create(name='NURSE')
+                my_doctor_group[0].user_set.add(user)
+                messages.success(request, 'You have singed up successfully.')
+                return HttpResponseRedirect('adminlogin')
+    return render(request,'doctorsignup.html', {'form': form})
+
 
 def is_admin(user):
     return user.groups.filter(name='ADMIN').exists()
