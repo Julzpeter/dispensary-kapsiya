@@ -206,7 +206,7 @@ def admin_approve_doctor_view(request):
     nurses=models.Nurse.objects.all().filter(status=False)
     return render(request,'admin_approve_doctor.html',{'nurses':nurses})
 
-
+#view function for adding, deleting, updating the patient
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_patient_view(request):
@@ -217,7 +217,65 @@ def admin_patient_view(request):
 def admin_view_patient_view(request):
     patients=models.Patient.objects.all().filter(status=True)
     return render(request,'admin_view_patient.html',{'patients':patients})
-    
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def delete_patient_from_hospital_view(request,pk):
+    patient=models.Patient.objects.get(id=pk)
+    user=models.User.objects.get(id=patient.user_id)
+    user.delete()
+    patient.delete()
+    return redirect('admin-view-patient')
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def update_patient_view(request,pk):
+    patient=models.Patient.objects.get(id=pk)
+    user=models.User.objects.get(id=patient.user_id)
+
+    userForm=forms.PatientUserForm(instance=user)
+    patientForm=forms.PatientForm(request.FILES,instance=patient)
+    mydict={'userForm':userForm,'patientForm':patientForm}
+    if request.method=='POST':
+        userForm=forms.PatientUserForm(request.POST,instance=user)
+        patientForm=forms.PatientForm(request.POST,request.FILES,instance=patient)
+        if userForm.is_valid() and patientForm.is_valid():
+            user=userForm.save()
+            user.set_password(user.password)
+            user.save()
+            patient=patientForm.save(commit=False)
+            patient.status=True
+            patient.assignedDoctorId=request.POST.get('assignedDoctorId')
+            patient.save()
+            return redirect('admin-view-patient')
+    return render(request,'admin_update_patient.html',context=mydict)
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_add_patient_view(request):
+    userForm=forms.PatientUserForm()
+    patientForm=forms.PatientForm()
+    mydict={'userForm':userForm,'patientForm':patientForm}
+    if request.method=='POST':
+        userForm=forms.PatientUserForm(request.POST)
+        patientForm=forms.PatientForm(request.POST,request.FILES)
+        if userForm.is_valid() and patientForm.is_valid():
+            user=userForm.save()
+            user.set_password(user.password)
+            user.save()
+
+            patient=patientForm.save(commit=False)
+            patient.user=user
+            patient.status=True
+            patient.assignedDoctorId=request.POST.get('assignedDoctorId')
+            patient.save()
+
+            my_patient_group = Group.objects.get_or_create(name='PATIENT')
+            my_patient_group[0].user_set.add(user)
+
+        return HttpResponseRedirect('admin-view-patient')
+    return render(request,'admin_add_patient.html',context=mydict)
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_appointment_view(request):
