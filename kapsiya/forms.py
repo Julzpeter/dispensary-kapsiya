@@ -12,11 +12,13 @@ class AdminSignUpForm(UserCreationForm):
         model = User
         fields = ['first_name','last_name','username','password1','password2']
 
-class DoctorSignUpForm(UserCreationForm):
+class DoctorUserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name','last_name','username','password1','password2']
-
+        fields = ['first_name','last_name','username','password']
+        widgets = {
+        'password': forms.PasswordInput()
+        }
 class DoctorForm(forms.ModelForm):
     class Meta:
         model = models.Nurse

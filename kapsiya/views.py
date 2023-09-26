@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import AdminSignUpForm,DoctorSignUpForm
+from .forms import AdminSignUpForm,DoctorUserForm
 from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
@@ -61,27 +61,29 @@ def admin_signup_view(request):
     return render(request,'adminsignup.html', {'form': form})
 
 def doctor_signup_view(request):
-    
-    if request.method == 'GET':
-        form = DoctorSignUpForm()
-        return render(request, 'doctorsignup.html', {'form': form})  
-    if request.method == 'POST':
-            form = DoctorSignUpForm(request.POST)
-            if form.is_valid():
-                user = form.save(commit=False)
-                #user.username = user.username.lower()
-                user.save()
-                my_doctor_group = Group.objects.get_or_create(name='NURSE')
-                my_doctor_group[0].user_set.add(user)
-                messages.success(request, 'You have singed up successfully.')
-                return HttpResponseRedirect('adminlogin')
-    return render(request,'doctorsignup.html', {'form': form})
+    userForm = forms.DoctorUserForm()
+    doctorForm= forms.DoctorForm()
+    mydict={'userForm':userForm,'doctorForm':doctorForm}
+    if request.method=='POST':
+        userForm=forms.DoctorUserForm(request.POST)
+        doctorForm=forms.DoctorForm(request.POST,request.FILES)
+        if userForm.is_valid() and doctorForm.is_valid():
+            user=userForm.save()
+            user.set_password(user.password)
+            user.save()
+            doctor=doctorForm.save(commit=False)
+            doctor.user=user
+            doctor=doctor.save()
+            my_doctor_group = Group.objects.get_or_create(name='NURSE')
+            my_doctor_group[0].user_set.add(user)
+        return HttpResponseRedirect('doctorlogin')
+    return render(request,'doctorsignup.html',context=mydict)
 
 
 def is_admin(user):
     return user.groups.filter(name='ADMIN').exists()
 def is_doctor(user):
-    return user.groups.filter(name='DOCTOR').exists()
+    return user.groups.filter(name='NURSE').exists()
 def is_patient(user):
     return user.groups.filter(name='PATIENT').exists()
 
@@ -89,7 +91,7 @@ def afterlogin_view(request):
     if is_admin(request.user):
         return redirect('admin-dashboard')
     elif is_doctor(request.user):
-        accountapproval=models.Doctor.objects.all().filter(user_id=request.user.id,status=True)
+        accountapproval=models.Nurse.objects.all().filter(user_id=request.user.id,status=True)
         if accountapproval:
             return redirect('doctor-dashboard')
         else:
@@ -139,8 +141,72 @@ def admin_doctor_view(request):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_view_doctor_view(request):
-    nurses = models.Nurse.objects.all().filter(status=True)
-    return render(request, 'admin_view_doctor.html', {'nurses':nurses})
+    doctors = models.Nurse.objects.all().filter(status=True)
+    return render(request, 'admin_view_doctor.html', {'doctors':doctors})
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def delete_doctor_from_hospital_view(request, pk):
+    nurse = models.Nurse.objects.get(id=pk)
+    user=models.User.objects.get(id=nurse.user_id)
+    user.delete()
+    nurse.delete()
+    return redirect('admin-view-doctor')
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def update_doctor_view(request,pk):
+    nurse=models.Nurse.objects.get(id=pk)
+    user = models.User.objects.get(id=nurse.user_id)
+
+    userForm = forms.DoctorUserForm(instance=user)
+    doctorForm=forms.DoctorForm(request.FILES,instance=nurse)
+    mydict={'userForm':userForm,'doctorForm':doctorForm}
+    if request.method=='POST':
+        userForm=forms.DoctorUserForm(request.POST,instance=user)
+        doctorForm=forms.DoctorForm(request.POST,request.FILES,instance=nurse)
+        if userForm.is_valid() and doctorForm.is_valid():
+            user=userForm.save()
+            user.set_password(user.password)
+            user.save()
+            nurse=doctorForm.save(commit=False)
+            nurse.status=True
+            nurse.save()
+            return redirect('admin-view-doctor')
+    return render(request,'admin_update_doctor.html',context=mydict)
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_add_doctor_view(request):
+    userForm = forms.DoctorUserForm()
+    doctorForm = forms.DoctorForm()
+    mydict={'userForm':userForm,'doctorForm':doctorForm}
+    if request.method=='POST':
+        userForm=forms.DoctorUserForm(request.POST)
+        doctorForm=forms.DoctorForm(request.POST, request.FILES)
+        if userForm.is_valid() and doctorForm.is_valid():
+            user = userForm.save()
+            user.set_password(user.password)
+            user.save()
+
+            doctor=doctorForm.save(commit=False)
+            doctor.user=user
+            doctor.status=True
+            doctor.save()
+
+            my_doctor_group = Group.objects.get_or_create(name='NURSE')
+            my_doctor_group[0].user_set.add(user)
+
+        return HttpResponseRedirect('admin-view-doctor')
+    return render(request, 'admin_add_doctor.html',context=mydict)
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_approve_doctor_view(request):
+    #those whose approval are needed
+    doctors=models.Nurse.objects.all().filter(status=False)
+    return render(request,'admin_approve_doctor.html',{'doctors':doctors})
+
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)

@@ -26,9 +26,11 @@ urlpatterns = [
     path('adminclick/', views.adminclick_view),
     path('doctorclick/', views.doctorclick_view),  
     path('adminsignup/', views.admin_signup_view, name='adminsignup'),
-    path('doctorsignup/', views.doctor_signup_view, name='doctorsignup'), 
+    path('doctorsignup/', views.doctor_signup_view, name='doctorsignup'),
+    path('doctorsignup/doctorlogin/', LoginView.as_view(template_name='doctorlogin.html')), 
+    path('doctorlogin/', LoginView.as_view(template_name='doctorlogin.html')), 
     path('adminlogin/', LoginView.as_view(template_name='adminlogin.html')),
-
+    
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
     path('logout/', LogoutView.as_view(template_name='index.html'),name='logout'),
 
@@ -36,7 +38,10 @@ urlpatterns = [
     #url for the side bar for the doctor
     path('admin-doctor', views.admin_doctor_view, name='admin-doctor'),
     path('admin-view-doctor', views.admin_view_doctor_view, name='admin-view-doctor'),
-    #path('admin-add-doctor', views.admin_add_doctor_view, name='admin-add-doctor'),
+    path('delete-doctor-from-hospital/<int:pk>', views.delete_doctor_from_hospital_view,name='delete-doctor-from-hospital'),
+    path('update-doctor/<int:pk>', views.update_doctor_view,name='update-doctor'),
+    path('admin-add-doctor',views.admin_add_doctor_view, name='admin-add-doctor'),
+    path('admin-approve-doctor', views.admin_approve_doctor_view,name='admin-approve-doctor'),
 
     #url for the side bar for the patient
     path('admin-patient', views.admin_patient_view, name='admin-patient'),

@@ -1,62 +1,124 @@
-{% extends 'homebase.html' %}
+<!DOCTYPE html>
+
+{% load widget_tweaks %}
 {% load static %}
-{% block content %}
-<br><br><br>
+<html lang="en" dir="ltr">
+
 <head>
-    <style>
-        body{
-            background-color: #1a405c;
-        }
-        .jumbotron{
-            text-align: center;
-        }
-        .btn-primary{
-            background-color: #1a405c; ;
-            pointer-events: none;
-           
-        }
-        img{
-            border-radius: 50%;
-            width: 150px;
-            padding: 15px;
-            float: initial;
-        }
-        img:hover {
-            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>AdminUpdate</title>
+  <style type="text/css">
+    body {
+      color: #aa082e;
+      background-color: #b6bde7;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+  </style>
+
 </head>
+
+
 <body>
-    <div class="jumbotron">
-        <form method="POST" novalidate>
-            {% csrf_token %}
-            <h2>Hello Nurse, Please Sign Up</h2>
-            <img src="{% static 'images/nurse.png' %}" alt="Joan">
-            {% for field in form %}
-            <p>
-                {% if field.errors %}
-                <ul class="errorlist">
-                    {% for error in field.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                {{ field.label_tag }}{{ field }}
-            </p>	
-            {% endfor %}
-            <!--<a class="btn btn-primary btn-md" style="color: white;" role="button">SignUp</a>-->
-            <button type="submit" class="btnSubmit">Submit</button>
-            <div class="text-center">Already have an account? <a href=" {% url adminlogin %}">Login here</a></div>
-            <br>
-            <br>
+  {% include "navbar.html" %}
+  <br>
+  <br>
+  <br>
+  <br>
 
-            
-        </form>
-        
 
+
+
+  <!--- signup page for doctor by admin(sumit)  ---------->
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container register-form">
+      <div class="form">
+        <div class="note">
+          <p>Register In Hospital</p>
+        </div>
+        <img src="{% static 'images/nurse.png' %}" alt="Joan" style="width: 150px; " style="border-radius: 50%">
+        <div class="form-content">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+              </div>
+              <div class="form-group">
+                {% render_field userForm.username class="form-control" placeholder="Username" %}
+              </div>
+              <div class="form-group">
+                {% render_field doctorForm.department class="form-control" placeholder="Department" %}
+              </div>
+              <div class="form-group">
+                {% render_field doctorForm.address class="form-control" placeholder="Address" %}
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
+              </div>
+              <div class="form-group">
+                {% render_field userForm.password class="form-control" placeholder="Password" %}
+              </div>
+              <div class="form-group">
+                {% render_field doctorForm.mobile class="form-control"  placeholder="Mobile" %}
+              </div>
+              <div class="form-group">
+                {% render_field doctorForm.profile_pic required="required" class="form-control" placeholder="Profile Picture" %}
+              </div>
+
+            </div>
+          </div>
+          <button type="submit" class="btnSubmit">Register</button>
+          <div class="text-center">Already have an account? <a href="doctorlogin">Login here</a></div>
+        </div>
+      </div>
     </div>
-    {% include "footer.html" %}
+
+  </form>
+
+  {% include "footer.html" %}
 </body>
 
 
-{% endblock content%}
+</html>
+
+
+
+
+

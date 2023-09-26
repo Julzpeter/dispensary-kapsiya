@@ -16,7 +16,7 @@ class Nurse(models.Model):
     def get_id(self):
         return self.user.id
     def __str__(self):
-        return "{} ({})".format(self.user.first_name)
+        return self.user.first_name
 
 class Patient(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
