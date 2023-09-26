@@ -54,8 +54,8 @@ urlpatterns = [
     path('discharge-patient/<int:pk>', views.discharge_patient_view,name='discharge-patient'),
     #url for the side bar for the appointment
     path('admin-appointment',views.admin_appointment_view, name='admin-appointment'),
-
-
-   
+    path('admin-view-appointment', views.admin_view_appointment_view,name='admin-view-appointment'),
+    path('admin-add-appointment', views.admin_add_appointment_view,name='admin-add-appointment'),
+     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     
 ]
