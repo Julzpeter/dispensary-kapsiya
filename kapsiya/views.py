@@ -108,22 +108,21 @@ def afterlogin_view(request):
 @user_passes_test(is_admin)
 def admin_dashboard_view(request):
     #for both table in admin dashboard
-    nurses=models.Nurse.objects.all().order_by('-id')
+    doctors=models.Nurse.objects.all().order_by('-id')
     patients=models.Patient.objects.all().order_by('-id')
     #for three cards
-    nursecount=models.Nurse.objects.all().filter(status=True).count()
-    pendingnursecount=models.Nurse.objects.all().filter(status=False).count()
-
+    doctorcount=models.Nurse.objects.all().filter(status=True).count()
+    pendingdoctorcount=models.Nurse.objects.all().filter(status=False).count()
     patientcount=models.Patient.objects.all().filter(status=True).count()
     pendingpatientcount=models.Patient.objects.all().filter(status=False).count()
 
     appointmentcount=models.Appointment.objects.all().filter(status=True).count()
     pendingappointmentcount=models.Appointment.objects.all().filter(status=False).count()
     mydict={
-    'nurses':nurses,
+    'doctors':doctors,
     'patients':patients,
-    'nursecount':nursecount,
-    'pendingnursecount':pendingnursecount,
+    'doctorcount':doctorcount,
+    'pendingdoctorcount':pendingdoctorcount,
     'patientcount':patientcount,
     'pendingpatientcount':pendingpatientcount,
     'appointmentcount':appointmentcount,
@@ -204,8 +203,8 @@ def admin_add_doctor_view(request):
 @user_passes_test(is_admin)
 def admin_approve_doctor_view(request):
     #those whose approval are needed
-    doctors=models.Nurse.objects.all().filter(status=False)
-    return render(request,'admin_approve_doctor.html',{'doctors':doctors})
+    nurses=models.Nurse.objects.all().filter(status=False)
+    return render(request,'admin_approve_doctor.html',{'nurses':nurses})
 
 
 @login_required(login_url='adminlogin')

@@ -1,4 +1,4 @@
-{% extends 'homebase.html' %}
+{% extends 'admin_base.html' %}
 {% block content %}
 {%load static%}
 
@@ -7,6 +7,9 @@
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <style media="screen">
+    body{
+        background-color: #ddd0c8;
+    }
     a:link {
       text-decoration: none;
     }
@@ -18,40 +21,44 @@
     .row {
       margin: 100px;
     }
+    .panel-heading{
+        background: #1a405c !important;
+    }
   </style>
 </head>
 
-<div class="container">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h6 class="panel-title">Nurses &nbsp Applied For Registration</h6>
-    </div>
-    <table class="table table-hover" id="dev-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Profile Picture</th>
-          <th>Mobile</th>
-          <th>Address</th>
-          <th>Approve</th>
-          <th>Reject</th>
-        </tr>
-      </thead>
-      {% for d in doctors %}
-      <tr>
-        <td> {{d.get_name}}</td>
-        <td> <img src="{% static d.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
-        <td>{{d.mobile}}</td>
-        <td>{{d.address}}</td>
-        <td>{{d.department}}</td>
-        <td><a class="btn btn-primary btn-xs" href="{% url 'approve-doctor' d.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>
-        <td><a class="btn btn-danger btn-xs" href="{% url 'reject-doctor' d.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
+    <div class="container">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h6 class="panel-title">Nurses &nbsp Applied For Registration</h6>
+          </div>
+          <table class="table table-hover" id="dev-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Profile Picture</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Approve</th>
+                <th>Reject</th>
+              </tr>
+            </thead>
+            {% for n in nurses %}
+            <tr>
+                <td> {{n.get_name}}</td>
+                <td> <img src="{% static d.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
+                <td>{{n.mobile}}</td>
+                <td>{{n.address}}</td>
+                <td><a class="btn btn-primary btn-xs" href="{% url 'approve-doctor' n.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>
+                <td><a class="btn btn-danger btn-xs" href="{% url 'reject-doctor' n.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      
+      
+      </div>
 
 
-</div>
 
 {% endblock content %}
