@@ -4,6 +4,9 @@
 
 <head>
   <style media="screen">
+    body{
+        background-color: #ddd0c8 !important;
+    }
     a:link {
       text-decoration: none;
     }
@@ -11,7 +14,7 @@
     .note {
       text-align: center;
       height: 80px;
-      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      background:  #1a405c;
       color: #fff;
       font-weight: bold;
       line-height: 80px;
@@ -19,7 +22,7 @@
 
     .form-content {
       padding: 5%;
-      border: 1px solid #ced4da;
+      border: 1px solid #1a405c;
       margin-bottom: 2%;
     }
 
@@ -49,52 +52,55 @@
 </head>
 <br><br><br>
 <!------ signup page for ptient by admin(james)  ---------->
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <div class="container register-form">
-    <div class="form">
-      <div class="note">
-        <p>Admit Patient To Dispensary</p>
-      </div>
-      <div class="form-content">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container register-form">
+          <div class="form">
+            <div class="note">
+              <p>Admit Patient To Dispensary</p>
             </div>
-            <div class="form-group">
-              {% render_field userForm.username class="form-control" placeholder="Username" %}
-            </div>
-            <div class="form-group">
-              {% render_field patientForm.address class="form-control" placeholder="Address" %}
-            </div>
-            <div class="form-group">
-              {% render_field patientForm.symptoms class="form-control" placeholder="Symptoms" %}
-            </div>
-            <div class="form-group">
-              {% render_field patientForm.profile_pic required="required" class="form-control" placeholder="Profile Picture" %}
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
-            </div>
-            <div class="form-group">
-              {% render_field userForm.password class="form-control" placeholder="Password" %}
-            </div>
-            <div class="form-group">
-              {% render_field patientForm.mobile  class="form-control" placeholder="Mobile" %}
-            </div>
-            <div class="form-group">
-              {% render_field patientForm.assignedDoctorId class="form-control" placeholder="Doctor" %}
+            <div class="form-content">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+                  </div>
+                  <div class="form-group">
+                    {% render_field userForm.username class="form-control" placeholder="Username" %}
+                  </div>
+                  <div class="form-group">
+                    {% render_field patientForm.address class="form-control" placeholder="Address" %}
+                  </div>
+                  <div class="form-group">
+                    {% render_field patientForm.symptoms class="form-control" placeholder="Symptoms" %}
+                  </div>
+                  <div class="form-group">
+                    {% render_field patientForm.profile_pic required="required" class="form-control" placeholder="Profile Picture" %}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
+                  </div>
+                  <div class="form-group">
+                    {% render_field userForm.password class="form-control" placeholder="Password" %}
+                  </div>
+                  <div class="form-group">
+                    {% render_field patientForm.mobile  class="form-control" placeholder="Mobile" %}
+                  </div>
+                  <div class="form-group">
+                    {% render_field patientForm.assignedDoctorId class="form-control" placeholder="Doctor" %}
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btnSubmit">Register</button>
             </div>
           </div>
         </div>
-        <button type="submit" class="btnSubmit">Admit</button>
-      </div>
-    </div>
-  </div>
-
-</form>
+      
+      </form>
+      
+</body>
 
 {% endblock content %}

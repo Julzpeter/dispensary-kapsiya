@@ -6,6 +6,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required,user_passes_test
 from . import models,forms
+from datetime import datetime,timedelta,date
 # Create your views here.
 def home_view(request):
     if request.user.is_authenticated:
@@ -276,6 +277,69 @@ def admin_add_patient_view(request):
 
         return HttpResponseRedirect('admin-view-patient')
     return render(request,'admin_add_patient.html',context=mydict)
+
+#------------------FOR APPROVING PATIENT BY ADMIN----------------------
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_approve_patient_view(request):
+    #those whose approval are needed
+    patients=models.Patient.objects.all().filter(status=False)
+    return render(request,'admin_approve_patient.html',{'patients':patients})
+
+#--------------------- FOR DISCHARGING PATIENT BY ADMIN START-------------------------
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_discharge_patient_view(request):
+    patients=models.Patient.objects.all().filter(status=True)
+    return render(request,'admin_discharge_patient.html',{'patients':patients})
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def discharge_patient_view(request,pk):
+    patient=models.Patient.objects.get(id=pk)
+    days=(date.today()-patient.admitDate) #2 days, 0:00:00
+    assignedDoctor=models.User.objects.all().filter(id=patient.assignedDoctorId)
+    d=days.days # only how many day that is 2
+    patientDict={
+        'patientId':pk,
+        'name':patient.get_name,
+        'mobile':patient.mobile,
+        'address':patient.address,
+        'symptoms':patient.symptoms,
+        'admitDate':patient.admitDate,
+        'todayDate':date.today(),
+        'day':d,
+        'assignedDoctorName':assignedDoctor[0].first_name,
+    }
+    if request.method == 'POST':
+        feeDict ={
+            'roomCharge':int(request.POST['roomCharge'])*int(d),
+            'doctorFee':request.POST['doctorFee'],
+            'medicineCost' : request.POST['medicineCost'],
+            'OtherCharge' : request.POST['OtherCharge'],
+            'total':(int(request.POST['roomCharge'])*int(d))+int(request.POST['doctorFee'])+int(request.POST['medicineCost'])+int(request.POST['OtherCharge'])
+        }
+        patientDict.update(feeDict)
+        #for updating to database patientDischargeDetails (pDD)
+        pDD=models.PatientDischargeDetails()
+        pDD.patientId=pk
+        pDD.patientName=patient.get_name
+        pDD.assignedDoctorName=assignedDoctor[0].first_name
+        pDD.address=patient.address
+        pDD.mobile=patient.mobile
+        pDD.symptoms=patient.symptoms
+        pDD.admitDate=patient.admitDate
+        pDD.releaseDate=date.today()
+        pDD.daySpent=int(d)
+        pDD.medicineCost=int(request.POST['medicineCost'])
+        pDD.roomCharge=int(request.POST['roomCharge'])*int(d)
+        pDD.doctorFee=int(request.POST['doctorFee'])
+        pDD.OtherCharge=int(request.POST['OtherCharge'])
+        pDD.total=(int(request.POST['roomCharge'])*int(d))+int(request.POST['doctorFee'])+int(request.POST['medicineCost'])+int(request.POST['OtherCharge'])
+        pDD.save()
+        return render(request,'patient_final_bill.html',context=patientDict)
+    return render(request,'patient_generate_bill.html',context=patientDict)
+
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_appointment_view(request):
