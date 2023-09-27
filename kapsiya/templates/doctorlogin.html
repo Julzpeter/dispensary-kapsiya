@@ -7,7 +7,7 @@
 <head>
     <style>
         body{
-            background-color: #1a405c;
+            background-color: #ddd0c8;
         }
         .jumbotron{
             text-align: center;
@@ -30,14 +30,18 @@
 </head>
 <body>
     <div class="jumbotron">
-        <form method="POST" novalidate>
-            {% csrf_token %}
-            <h2>Please Login To Your Account</h2>
-            <img src="{% static 'images/nurse.png' %}" alt="Joan">
-            {{form.as_p}}
-            
-            <input type="submit" value="Login"/>
-        </form>
+        <div class="form-content">
+            <form method="POST" novalidate>
+                {% csrf_token %}
+                <h2>Please Login To Your Account</h2>
+                <img src="{% static 'images/nurse.png' %}" alt="Joan">
+                {{form.as_p}}
+                
+                <input type="submit" value="Login"/>
+                <div class="text-center">Don't have an account? <a href="doctorsignup">Signup here</a></div>
+            </form>
+        </div>
+      
     </div>
     {% include "footer.html" %}
 </body>

@@ -26,14 +26,25 @@ urlpatterns = [
     path('adminclick/', views.adminclick_view),
     path('doctorclick/', views.doctorclick_view),  
     path('patientclick/', views.patientclick_view),
-    
+
     path('adminsignup/', views.admin_signup_view, name='adminsignup'),
     path('adminsignup/adminlogin/', LoginView.as_view(template_name='adminlogin.html')),
+    path('adminsignup/adminlogin/adminsignup', views.admin_signup_view, name='adminsignup'),
     path('doctorsignup/', views.doctor_signup_view, name='doctorsignup'),
     path('doctorsignup/doctorlogin/', LoginView.as_view(template_name='doctorlogin.html')), 
+    path('doctorsignup/doctorlogin/doctorsignup', views.doctor_signup_view, name='doctorsignup'),
+    path('patientsignup/', views.patient_signup_view, name='patientsignup'),
+    path('patientsignup/patientlogin/', LoginView.as_view(template_name='patientlogin.html')), 
+
     path('doctorlogin/', LoginView.as_view(template_name='doctorlogin.html')), 
     path('adminlogin/', LoginView.as_view(template_name='adminlogin.html')),
-    
+    path('adminlogin/adminsignup', views.admin_signup_view, name='adminsignup'),
+    path('patientlogin/', LoginView.as_view(template_name='patientlogin.html')),
+    path('patientlogin/patientsignup', views.patient_signup_view, name='patientsignup'),
+    #path('patientsignup/patientlogin/patientsignup/', views.patient_signup_view, name='patientsignup'),
+
+
+
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
     path('logout/', LogoutView.as_view(template_name='index.html'),name='logout'),
 
