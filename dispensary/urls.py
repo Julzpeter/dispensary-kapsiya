@@ -43,6 +43,8 @@ urlpatterns = [
     path('patientlogin/patientsignup', views.patient_signup_view, name='patientsignup'),
     path('patientsignup/patientlogin/patientsignup/', views.patient_signup_view, name='patientsignup'),
 
+    path('aboutus', views.aboutus_view),
+    path('contactus', views.contactus_view),
 
 
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
