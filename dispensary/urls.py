@@ -76,7 +76,7 @@ urlpatterns = [
 urlpatterns +=[
     path('doctor-dashboard',views.doctor_dashboard_view, name='doctor-dashboard'),
     path('search', views.search_view,name='search'),
-
+    path('doctor-patient', views.doctor_patient_view,name='doctor-patient'),
 
 
 
