@@ -74,12 +74,15 @@ urlpatterns = [
 
 #-----------DOCTOR RELATED URLS
 urlpatterns +=[
+    #url patterns for the side bar(patients)
     path('doctor-dashboard',views.doctor_dashboard_view, name='doctor-dashboard'),
     path('search', views.search_view,name='search'),
     path('doctor-patient', views.doctor_patient_view,name='doctor-patient'),
     path('doctor-view-patient', views.doctor_view_patient_view,name='doctor-view-patient'),
     path('doctor-view-discharge-patient',views.doctor_view_discharge_patient_view,name='doctor-view-discharge-patient'),
 
+    #url patterns for the side bar (appointments)
+    path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
 
 
 
