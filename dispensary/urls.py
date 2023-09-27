@@ -75,4 +75,12 @@ urlpatterns = [
 #-----------DOCTOR RELATED URLS
 urlpatterns +=[
     path('doctor-dashboard',views.doctor_dashboard_view, name='doctor-dashboard'),
+    path('search', views.search_view,name='search'),
+
+
+
+
+
+
 ]
+

@@ -407,7 +407,7 @@ def admin_approve_appointment_view(request):
 #--------------------------------------------------------------------------------
 
 
-###-----------------NURSSE RELATED VIEWS------------------------------------------------------------------------- 
+###-----------------NURSE RELATED VIEWS------------------------------------------------------------------------- 
 #----------------------------------------------------------------------------------------------------------------
 
 @login_required(login_url='doctorlogin')
@@ -433,3 +433,12 @@ def doctor_dashboard_view(request):
     'doctor':models.Nurse.objects.get(user_id=request.user.id), #nurse's profile picture  on the  sidebar
     }
     return render(request,'doctor_dashboard.html',context=mydict)
+
+@login_required(login_url='doctorlogin')
+@user_passes_test(is_doctor)
+def search_view(request):
+    doctor=models.Nurse.objects.get(user_id=request.user.id) #for profile picture of doctor in sidebar
+    # whatever user write in search box we get in query
+    query = request.GET['query']
+    patients=models.Patient.objects.all().filter(status=True,assignedDoctorId=request.user.id).filter(Q(symptoms__icontains=query)|Q(user__first_name__icontains=query))
+    return render(request,'doctor_view_patient.html',{'patients':patients,'doctor':doctor})
