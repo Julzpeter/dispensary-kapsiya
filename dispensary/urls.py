@@ -25,7 +25,10 @@ urlpatterns = [
     #url patterns for the navbar
     path('adminclick/', views.adminclick_view),
     path('doctorclick/', views.doctorclick_view),  
+    path('patientclick/', views.patientclick_view),
+    
     path('adminsignup/', views.admin_signup_view, name='adminsignup'),
+    path('adminsignup/adminlogin/', LoginView.as_view(template_name='adminlogin.html')),
     path('doctorsignup/', views.doctor_signup_view, name='doctorsignup'),
     path('doctorsignup/doctorlogin/', LoginView.as_view(template_name='doctorlogin.html')), 
     path('doctorlogin/', LoginView.as_view(template_name='doctorlogin.html')), 
