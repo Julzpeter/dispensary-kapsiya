@@ -23,6 +23,11 @@ def doctorclick_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
     return render(request, 'doctorclick.html')
+
+def patientclick_view(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('afterlogin')
+    return render(request,'patientclick.html')
 """
 def sign_in(request):
     if request.method == 'GET':
