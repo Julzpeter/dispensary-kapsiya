@@ -88,3 +88,5 @@ urlpatterns +=[
      path('delete-appointment/<int:pk>', views.delete_appointment_view,name='delete-appointment'),
 ]
 
+#----------FOR PATIENT RELATED URLS--------------------------
+
