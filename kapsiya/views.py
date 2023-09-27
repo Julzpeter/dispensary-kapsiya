@@ -7,14 +7,13 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required,user_passes_test
 from . import models,forms
 from datetime import datetime,timedelta,date
+
+
 # Create your views here.
 def home_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
     return render (request, 'index.html')
-
-ef aboutus_view(request):
-    return render(request,'aboutus.html')
 
 ##view function for showinng the signup/login button for the admin
 def adminclick_view(request):
@@ -403,3 +402,34 @@ def admin_approve_appointment_view(request):
     #those whose approval are needed
     appointments=models.Appointment.objects.all().filter(status=False)
     return render(request,'admin_approve_appointment.html',{'appointments':appointments})
+#-------------------------------------------------------------------------------
+#---------------ADMIN RELATED VIEWS END---------------------------------------------
+#--------------------------------------------------------------------------------
+
+
+###-----------------NURSSE RELATED VIEWS------------------------------------------------------------------------- 
+#----------------------------------------------------------------------------------------------------------------
+
+@login_required(login_url='doctorlogin')
+@user_passes_test(is_doctor)
+def doctor_dashboard_view(request):
+    #for the three cards(patientcount, appointmentcount,patientdischarged)
+    patientcount=models.Patient.objects.all().filter(status=True,assignedDoctorId=request.user.id).count()
+    appointmentcount=models.Appointment.objects.all().filter(status=True,doctorId=request.user.id).count()
+    patientdischarged=models.PatientDischargeDetails.objects.all().distinct().filter(assignedDoctorName=request.user.first_name).count()
+
+#for the table in nurse dashboard
+    appointments=models.Appointment.objects.all().filter(status=True,doctorId=request.user.id).order_by('-id')
+    patientid=[]
+    for a in appointments:
+        patientid.append(a.patientId)
+    patients=models.Patient.objects.all().filter(status=True,user_id__in=patientid).order_by('-id')
+    appointments=zip(appointments,patients)
+    mydict={
+    'patientcount':patientcount,
+    'appointmentcount':appointmentcount,
+    'patientdischarged':patientdischarged,
+    'appointments':appointments,
+    'doctor':models.Nurse.objects.get(user_id=request.user.id), #nurse's profile picture  on the  sidebar
+    }
+    return render(request,'doctor_dashboard.html',context=mydict)

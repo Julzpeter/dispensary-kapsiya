@@ -18,7 +18,7 @@ from django.urls import path, include
 from kapsiya import views
 from django.contrib.auth.views import LoginView,LogoutView
 urlpatterns = [
-    
+    #----------------ADMIN RELATED URLS
     path('admin/', admin.site.urls),
     path('', views.home_view, name=''),
     
@@ -42,10 +42,6 @@ urlpatterns = [
     path('patientlogin/', LoginView.as_view(template_name='patientlogin.html')),
     path('patientlogin/patientsignup', views.patient_signup_view, name='patientsignup'),
     path('patientsignup/patientlogin/patientsignup/', views.patient_signup_view, name='patientsignup'),
-
-    path('aboutus', views.aboutus_view),
-    path('contactus', views.contactus_view),
-
 
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
     path('logout/', LogoutView.as_view(template_name='index.html'),name='logout'),
@@ -74,4 +70,9 @@ urlpatterns = [
     path('admin-add-appointment', views.admin_add_appointment_view,name='admin-add-appointment'),
      path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     
+]
+
+#-----------DOCTOR RELATED URLS
+urlpatterns +=[
+    path('doctor-dashboard',views.doctor_dashboard_view, name='doctor-dashboard'),
 ]
