@@ -10,11 +10,13 @@
   <title>Patientsignup</title>
   <style type="text/css">
     body {
-      color: #aa082e;
-      background-color: #ddd0c8 !important;
+      
+      background-color: #1a405c !important;
       font-family: 'Roboto', sans-serif;
     }
-
+   .jumbotron{
+    text-align: center;
+   }
     a:link {
       text-decoration: none;
     }
@@ -22,7 +24,7 @@
     .note {
       text-align: center;
       height: 80px;
-      background: #1a405c;
+      background: #ddd0c8;
       color: black;
       font-weight: bold;
       line-height: 80px;
@@ -44,12 +46,12 @@
       padding: 1%;
       width: 20%;
       cursor: pointer;
-      background: #0062cc;
-      color: #fff;
+      background: #ddd0c8;
+      color: black;
     }
     img{
         border-radius: 50%;
-        width: 150px;
+        width: 130px;
         padding: 15px;
         float: initial;
         display: block;
@@ -57,7 +59,7 @@
         margin-right: auto;
         }
         img:hover {
-            box-shadow: 0 0 2px 1px rgba(173, 24, 44, 0.5);
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
             
         }
   </style>
@@ -71,19 +73,16 @@
   <br>
   <br>
   <br>
-
-
-
-
+<div class="jumbotron">
   <!--- signup page for patient by admin(sumit)  ---------->
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="container register-form">
       <div class="form">
-        <div class="note">
-          <p>Register to Dispensary</p>
-        </div>
-        <img src="{% static 'images/patients.png' %}" alt="Joan" style="width: 150px; " style="border-radius: 50%">
+      
+          <h2>Please Register to Dispensary</h2>
+        
+        <img src="{% static 'images/patients.png' %}" alt="Joan" style="width: 130px; " style="border-radius: 30%">
         <div class="form-content">
           <div class="row">
             <div class="col-md-6">
@@ -126,8 +125,9 @@
     </div>
 
   </form>
-
-  {% include "footer.html" %}
+  
+</div>
+{% include "footer.html" %} 
 </body>
 
 

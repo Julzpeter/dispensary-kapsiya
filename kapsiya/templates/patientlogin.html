@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load widget_tweaks %}
+{% load static %}
 <html lang="en" dir="ltr">
 
 <head>
@@ -11,7 +12,7 @@
   <style type="text/css">
     body {
      
-      background-color: #ddd0c8 !important;
+      background-color: #1a405c !important;
       font-family: 'Roboto', sans-serif;
     }
 
@@ -22,8 +23,8 @@
     .note {
       text-align: center;
       height: 80px;
-      background: #1a405c;
-      color: #fff;
+      background: #ddd0c8;
+      color: #fff !important;
       font-weight: bold;
       line-height: 80px;
       
@@ -48,6 +49,21 @@
       background: #1a405c;
       color: #fff;
     }
+    h2{
+      text-align: center;
+    }
+    img{
+      border-radius: 50%;
+      width: 150px;
+      padding: 15px;
+      float: initial;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      }
+        img:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+        }
   </style>
 
 </head>
@@ -59,42 +75,42 @@
   <br><br>
 
   <!--- login page for patient by admin(JAMES)  ---------->
-  <form method="post">
-    {% csrf_token %}
-    <div class="container register-form">
-      <div class="form">
-        <div class="note">
-          <p>Patient Login Page</p>
-        </div>
-
-        <div class="form-content">
-          <div class="row">
-            <div class="col-md-6">
-
-              <div class="form-group">
-                {% render_field form.username class="form-control" placeholder="Username" %}
+  <div class="jumbotron">
+    <form method="post">
+      {% csrf_token %}
+      <div class="container register-form">
+        <div class="form">
+         
+            <h2>Please Login To Your Account</h2>
+            <img src="{% static 'images/patients.png' %}" alt="Joan" style="width: 130px; " style="border-radius: 30%">
+  
+          <div class="form-content">
+            <div class="row">
+              <div class="col-md-6">
+  
+                <div class="form-group">
+                  {% render_field form.username class="form-control" placeholder="Username" %}
+                </div>
+  
               </div>
-
-            </div>
-            <div class="col-md-6">
-
-              <div class="form-group">
-                {% render_field form.password class="form-control" placeholder="Password" %}
+              <div class="col-md-6">
+  
+                <div class="form-group">
+                  {% render_field form.password class="form-control" placeholder="Password" %}
+                </div>
+  
               </div>
-
             </div>
+            <button type="submit" class="btnSubmit">Login</button>
+            <div class="text-center">Don't have an account? <a href="patientsignup">Signup here</a></div>
           </div>
-          <button type="submit" class="btnSubmit">Login</button>
-          <div class="text-center">Don't have an account? <a href="patientsignup">Signup here</a></div>
         </div>
       </div>
-    </div>
+  
+    </form>
+  
 
-  </form>
-
-  <br><br><br>
- 
-
+  </div>
   {% include "footer.html" %}
 </body>
 

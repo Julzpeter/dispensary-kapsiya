@@ -41,7 +41,7 @@ urlpatterns = [
     path('adminlogin/adminsignup', views.admin_signup_view, name='adminsignup'),
     path('patientlogin/', LoginView.as_view(template_name='patientlogin.html')),
     path('patientlogin/patientsignup', views.patient_signup_view, name='patientsignup'),
-    #path('patientsignup/patientlogin/patientsignup/', views.patient_signup_view, name='patientsignup'),
+    path('patientsignup/patientlogin/patientsignup/', views.patient_signup_view, name='patientsignup'),
 
 
 
