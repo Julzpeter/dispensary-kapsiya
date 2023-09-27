@@ -23,48 +23,51 @@
 </head>
 
 
+<body>
+    <div class="container">
 
-<div class="container">
-
-    <form  action="/search" method="get" style="margin-left:70%;" class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" name="query" id="query" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
- 
-
-  {% if patients %}
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h6 class="panel-title">Your Total Patient List</h6>
+        <form  action="/search" method="get" style="margin-left:70%;" class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" name="query" id="query" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+     
+    <br>
+    <br>
+      {% if patients %}
+      <div class="panel panel-primary">
+        <div class="panel-heading" style="background: #1a405c;">
+          <h6 class="panel-title">Your Patients</h6>
+        </div>
+        <table class="table table-hover" id="dev-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Profile Picture</th>
+              <th>Symptoms</th>
+              <th>Mobile</th>
+              <th>Address</th>
+    
+            </tr>
+          </thead>
+          {% for p in patients %}
+          <tr>
+            <td> {{p.get_name}}</td>
+            <td> <img src="{% static p.profile_pic.url %}" alt="Profile Pic" height="60px" width="60px" /></td>
+            <td>{{p.symptoms}}</td>
+            <td>{{p.mobile}}</td>
+            <td>{{p.address}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      {%else%}
+      <br><br><br>
+      <h4 style="text-align: center;color: red;">No Patient Found !!!</h4>
+      {% endif %}
+    
+    
     </div>
-    <table class="table table-hover" id="dev-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Profile Picture</th>
-          <th>Symptoms</th>
-          <th>Mobile</th>
-          <th>Address</th>
+</body>
 
-        </tr>
-      </thead>
-      {% for p in patients %}
-      <tr>
-        <td> {{p.get_name}}</td>
-        <td> <img src="{% static p.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
-        <td>{{p.symptoms}}</td>
-        <td>{{p.mobile}}</td>
-        <td>{{p.address}}</td>
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
-  {%else%}
-  <br><br><br>
-  <h4 style="text-align: center;color: red;">No Patient Found !!!</h4>
-  {% endif %}
-
-
-</div>
 
 {% endblock content %}

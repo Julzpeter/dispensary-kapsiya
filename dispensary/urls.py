@@ -68,7 +68,7 @@ urlpatterns = [
     path('admin-appointment',views.admin_appointment_view, name='admin-appointment'),
     path('admin-view-appointment', views.admin_view_appointment_view,name='admin-view-appointment'),
     path('admin-add-appointment', views.admin_add_appointment_view,name='admin-add-appointment'),
-     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
+    path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     
 ]
 
@@ -77,7 +77,8 @@ urlpatterns +=[
     path('doctor-dashboard',views.doctor_dashboard_view, name='doctor-dashboard'),
     path('search', views.search_view,name='search'),
     path('doctor-patient', views.doctor_patient_view,name='doctor-patient'),
-
+    path('doctor-view-patient', views.doctor_view_patient_view,name='doctor-view-patient'),
+    path('doctor-view-discharge-patient',views.doctor_view_discharge_patient_view,name='doctor-view-discharge-patient'),
 
 
 
