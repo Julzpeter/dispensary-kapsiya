@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from .forms import AdminSignUpForm,DoctorUserForm
 from django.contrib.auth.models import Group
 from django.contrib import messages
@@ -234,6 +234,24 @@ def admin_approve_doctor_view(request):
     nurses=models.Nurse.objects.all().filter(status=False)
     return render(request,'admin_approve_doctor.html',{'nurses':nurses})
 
+#function for approving the nurse
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def approve_doctor_view(request,pk):
+    doctor=models.Nurse.objects.get(id=pk)
+    doctor.status=True
+    doctor.save()
+    return redirect(reverse('admin-approve-doctor'))
+
+#function for rejecting the nurse
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def reject_doctor_view(request,pk):
+    doctor=models.Nurse.objects.get(id=pk)
+    user=models.User.objects.get(id=doctor.user_id)
+    user.delete()
+    doctor.delete()
+    return redirect('admin-approve-doctor')
 #view function for adding, deleting, updating the patient
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)

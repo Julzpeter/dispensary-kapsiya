@@ -54,6 +54,8 @@ urlpatterns = [
     path('update-doctor/<int:pk>', views.update_doctor_view,name='update-doctor'),
     path('admin-add-doctor',views.admin_add_doctor_view, name='admin-add-doctor'),
     path('admin-approve-doctor', views.admin_approve_doctor_view,name='admin-approve-doctor'),
+    path('approve-doctor/<int:pk>', views.approve_doctor_view,name='approve-doctor'),
+    path('reject-doctor/<int:pk>', views.reject_doctor_view,name='reject-doctor'),
 
     #url for the side bar for the patient
     path('admin-patient', views.admin_patient_view, name='admin-patient'),
