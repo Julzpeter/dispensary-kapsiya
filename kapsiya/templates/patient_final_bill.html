@@ -7,6 +7,9 @@
   <title>invoice template</title>
 
   <style>
+    body{
+      background-color: #ddd0c8;
+    }
     .invoice-box {
       max-width: 800px;
       margin: auto;
@@ -16,7 +19,7 @@
       font-size: 16px;
       line-height: 24px;
       font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-      color: #555;
+      color: black;
     }
 
     .invoice-box table {
@@ -111,126 +114,129 @@
 </head>
 
 <br><br><br>
-<div class="invoice-box">
-  <table cellpadding="0" cellspacing="0">
-    <tr class="top">
-      <td colspan="2">
-        <table>
-          <tr>
-            <td class="title">
-              <h1>Kapsiya Dispensary  Tracking System</h1>
-            </td>
+<body>
+  <div class="invoice-box">
+    <table cellpadding="0" cellspacing="0">
+      <tr class="top">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td class="title">
+                <h1>Kapsiya Dispensary  Tracking System</h1>
+              </td>
+  
+              <td>
+  
+                Admit Date: {{admitDate}}<br>
+                Release Date: {{todayDate}}<br>
+                Days Spent: {{day}}
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+  
+      <tr class="information">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td>
+                Patient Name : {{name}}<br>
+                Patient Mobile : {{mobile}}<br>
+                Patient Addres : {{address}}<br>
+              </td>
+  
+              <td>
+                Nurse's Name :
+                {{assignedDoctorName}}<br>
+  
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+  
+      <tr class="heading">
+        <td>
+          Disease and Symptoms
+        </td>
+        <td>
+  
+        </td>
+  
+      </tr>
+  
+      <tr class="details">
+        <td>
+          {{symptoms}}
+        </td>
+      </tr>
+      <tr class="heading">
+        <td>
+          Item
+        </td>
+  
+        <td>
+          Price
+        </td>
+      </tr>
+  
+      <tr class="item">
+        <td>
+          Room Charge of {{day}} Days
+        </td>
+  
+        <td>
+          {{roomCharge}}
+        </td>
+      </tr>
+  
+      <tr class="item">
+        <td>
+          Doctor Fee
+        </td>
+  
+        <td>
+          {{doctorFee}}
+        </td>
+      </tr>
+  
+      <tr class="item">
+        <td>
+          Medicine Cost
+        </td>
+  
+        <td>
+          {{medicineCost}}
+        </td>
+      </tr>
+  
+      <tr class="item last">
+        <td>
+          Other Charge
+        </td>
+  
+        <td>
+          {{OtherCharge}}
+        </td>
+      </tr>
+  
+      <tr class="total">
+        <td></td>
+  
+        <td>
+          Total Kshs : {{total}}
+        </td>
+      </tr>
+  
+    </table>
+  </div>
+  <br><br>
+  <div class="download">
+    <a style="background:#1a405c; width:50%; height: 500%; border-radius: 4px; " href="{% url 'download-pdf' patientId  %}">Download</a>
+  </div>
+</body>
 
-            <td>
-
-              Admit Date: {{admitDate}}<br>
-              Release Date: {{todayDate}}<br>
-              Days Spent: {{day}}
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-
-    <tr class="information">
-      <td colspan="2">
-        <table>
-          <tr>
-            <td>
-              Patient Name : {{name}}<br>
-              Patient Mobile : {{mobile}}<br>
-              Patient Addres : {{address}}<br>
-            </td>
-
-            <td>
-              Nurse's Name :<br>
-              {{assignedDoctorName}}<br>
-
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-
-    <tr class="heading">
-      <td>
-        Disease and Symptoms
-      </td>
-      <td>
-
-      </td>
-
-    </tr>
-
-    <tr class="details">
-      <td>
-        {{symptoms}}
-      </td>
-    </tr>
-    <tr class="heading">
-      <td>
-        Item
-      </td>
-
-      <td>
-        Price
-      </td>
-    </tr>
-
-    <tr class="item">
-      <td>
-        Room Charge of {{day}} Days
-      </td>
-
-      <td>
-        {{roomCharge}}
-      </td>
-    </tr>
-
-    <tr class="item">
-      <td>
-        Doctor Fee
-      </td>
-
-      <td>
-        {{doctorFee}}
-      </td>
-    </tr>
-
-    <tr class="item">
-      <td>
-        Medicine Cost
-      </td>
-
-      <td>
-        {{medicineCost}}
-      </td>
-    </tr>
-
-    <tr class="item last">
-      <td>
-        Other Charge
-      </td>
-
-      <td>
-        {{OtherCharge}}
-      </td>
-    </tr>
-
-    <tr class="total">
-      <td></td>
-
-      <td>
-        Total Kshs : {{total}}
-      </td>
-    </tr>
-
-  </table>
-</div>
-<br><br>
-<div class="download">
-  <a style="background:red; width:500px;" href="{% url 'download-pdf' patientId  %}">Download</a>
-</div>
 
 
 {% endblock content %}
