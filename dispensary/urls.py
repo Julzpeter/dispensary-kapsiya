@@ -69,7 +69,7 @@ urlpatterns = [
     #url for the side bar for the appointment
     path('admin-appointment',views.admin_appointment_view, name='admin-appointment'),
     path('admin-view-appointment', views.admin_view_appointment_view,name='admin-view-appointment'),
-    path('admin-add-appointment', views.admin_add_appointment_view,name='admin-add-appointment'),
+    #path('admin-add-appointment', views.admin_add_appointment_view,name='admin-add-appointment'),
     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     
 ]
@@ -88,6 +88,7 @@ urlpatterns +=[
     #url patterns for the side bar (appointments)
     path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
     path('doctor-view-appointment', views.doctor_view_appointment_view,name='doctor-view-appointment'),
+    path('doctor-add-appointment', views.doctor_add_appointment_view,name='doctor-add-appointment'),
     path('doctor-delete-appointment',views.doctor_delete_appointment_view,name='doctor-delete-appointment'),
     path('delete-appointment/<int:pk>', views.delete_appointment_view,name='delete-appointment'),
 ]
