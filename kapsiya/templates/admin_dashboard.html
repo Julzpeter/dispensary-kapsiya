@@ -9,7 +9,7 @@
   <div class="row">
     <div class="panel panel-primary col-md-5" style="margin-left:2%;">
       <div class="panel-heading" style="text-align:center; background-color: #1a405c;">
-        <h6 class="panel-title">Recent Nurses </h6>
+        <h6 class="panel-title">Recent Doctors </h6>
       </div>
       <table class="table table-hover" id="dev-table">
         <thead>
@@ -57,7 +57,7 @@
           <td>{{p.mobile}}</td>
           <td>{{p.address}}</td>
           {%if p.status%}
-          <td> <span class="label label-primary">Admitted</span></td>
+          <td> <span class="label label-primary">Registered</span></td>
           {% else %}
           <td> <span class="label label-success">On Hold</span></td>
           {% endif %}
