@@ -465,14 +465,14 @@ def search_view(request):
     return render(request,'doctor_view_patient.html',{'patients':patients,'doctor':doctor})
 
 #for discharging patient by the doctor
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+@login_required(login_url='doctorlogin')
+@user_passes_test(is_doctor)
 def doctor_discharge_patient_view(request):
     patients=models.Patient.objects.all().filter(status=True)
     return render(request,'admin_discharge_patient.html',{'patients':patients})
 
-@login_required(login_url='adminlogin')
-@user_passes_test(is_admin)
+@login_required(login_url='doctorlogin')
+@user_passes_test(is_doctor)
 def discharge_patient_view(request,pk):
     patient=models.Patient.objects.get(id=pk)
     days=(date.today()-patient.admitDate) #2 days, 0:00:00

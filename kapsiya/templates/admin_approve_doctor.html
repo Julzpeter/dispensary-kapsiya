@@ -46,7 +46,7 @@
             {% for n in nurses %}
             <tr>
                 <td> {{n.get_name}}</td>
-                <td> <img src="{% static d.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
+                <td> <img src="{% static n.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
                 <td>{{n.mobile}}</td>
                 <td>{{n.address}}</td>
                 <td><a class="btn btn-primary btn-xs" href="{% url 'approve-doctor' n.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>

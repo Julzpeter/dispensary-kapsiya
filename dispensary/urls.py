@@ -79,7 +79,7 @@ urlpatterns +=[
     #url patterns for the side bar(patients)
     path('doctor-dashboard',views.doctor_dashboard_view, name='doctor-dashboard'),
     path('search', views.search_view,name='search'),
-    path('doctor-discharge-patient', views.doctor_discharge_patient_view,name='admin-discharge-patient'),
+    path('doctor-discharge-patient', views.doctor_discharge_patient_view,name='doctor-discharge-patient'),
     path('discharge-patient/<int:pk>', views.discharge_patient_view,name='discharge-patient'),
     path('doctor-patient', views.doctor_patient_view,name='doctor-patient'),
     path('doctor-view-patient', views.doctor_view_patient_view,name='doctor-view-patient'),

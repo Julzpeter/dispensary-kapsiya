@@ -239,10 +239,10 @@
   <nav class="menu" tabindex="0">
     <div class="smartphone-menu-trigger"></div>
     <header class="avatar">
-      <img src="{% static doctor.profile_pic.url %}" alt="Profile Pic" />
+      <img src="{% static 'images/nurse.png' %}" alt="Profile Pic" />
       <br><br>
-      <h6>DOCTOR</h6>
-      <h2>{{request.user.first_name}}</h2>
+      <h5>Doctor</h5>
+      <h1>{{request.user.first_name}}</h1>
     </header>
     <ul>
       <li tabindex="0" class="icon-dashboard"> <a style="color:white; text-decoration:none;" href="/doctor-dashboard"><span>Dashboard</span></a> </li>
