@@ -332,7 +332,7 @@ def admin_approve_patient_view(request):
     return render(request,'admin_approve_patient.html',{'patients':patients})
 
 #--------------------- FOR DISCHARGING PATIENT BY ADMIN START-------------------------
-"""
+
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_discharge_patient_view(request):
@@ -385,7 +385,7 @@ def discharge_patient_view(request,pk):
         pDD.save()
         return render(request,'patient_final_bill.html',context=patientDict)
     return render(request,'patient_generate_bill.html',context=patientDict)
-"""
+
 ## APPOINTMENT SECTION
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -397,7 +397,7 @@ def admin_appointment_view(request):
 def admin_view_appointment_view(request):
     appointments=models.Appointment.objects.all().filter(status=True)
     return render(request,'admin_view_appointment.html',{'appointments':appointments})
-"""   
+  
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_add_appointment_view(request):
@@ -413,10 +413,10 @@ def admin_add_appointment_view(request):
             appointment.patientName=models.User.objects.get(id=request.POST.get('patientId')).first_name
             appointment.status=True
             appointment.save()
-            #sendsms() 
+            sendsms() 
         return HttpResponseRedirect('admin-view-appointment')
     return render(request,'admin_add_appointment.html',context=mydict)
-"""
+
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_approve_appointment_view(request):
@@ -465,6 +465,7 @@ def search_view(request):
     return render(request,'doctor_view_patient.html',{'patients':patients,'doctor':doctor})
 
 #for discharging patient by the doctor
+"""
 @login_required(login_url='doctorlogin')
 @user_passes_test(is_doctor)
 def doctor_discharge_patient_view(request):
@@ -517,7 +518,7 @@ def discharge_patient_view(request,pk):
         pDD.save()
         return render(request,'patient_final_bill.html',context=patientDict)
     return render(request,'patient_generate_bill.html',context=patientDict)
-
+"""
 
 @login_required(login_url='doctorlogin')
 @user_passes_test(is_doctor)
@@ -560,7 +561,7 @@ def doctor_view_appointment_view(request):
     patients=models.Patient.objects.all().filter(status=True,user_id__in=patientid)
     appointments=zip(appointments,patients)
     return render(request,'doctor_view_appointment.html',{'appointments':appointments,'doctor':doctor})
-    
+"""    
 @login_required(login_url='doctorlogin')
 @user_passes_test(is_doctor)
 def doctor_add_appointment_view(request):
@@ -579,7 +580,7 @@ def doctor_add_appointment_view(request):
             #sendsms() 
         return HttpResponseRedirect('doctor-view-appointment')
     return render(request,'doctor_add_appointment.html',context=mydict)
-
+"""
 
 @login_required(login_url='doctorlogin')
 @user_passes_test(is_doctor)
