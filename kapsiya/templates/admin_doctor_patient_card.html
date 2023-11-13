@@ -41,8 +41,8 @@
       display: grid;
       grid-template-columns: auto auto auto;
       padding: 4px;
-      padding-left: 20%;
-      height: 100px;
+      /*padding-left: 20%;*/
+      height: 80px;
       
     }
 
@@ -72,9 +72,16 @@
 
     <div class="grid-item">
       <div class="card">
-        <img src="{% static 'images/nurse.png'%}" alt="John" style="width:100%;">
+        <img src="{% static 'images/nurse.png'%}" alt="John" style="width:280px;">
         <p class="title">DOCTOR</p>
         <p><button><a href="/doctorclick">View</a></button></p>
+      </div>
+    </div>
+    <div class="grid-item">
+      <div class="card">
+        <img src="{% static 'images/patients.png'%}" alt="John" style="width:230px;">
+        <p class="title">PATIENT</p>
+        <p><button><a href="/patientclick">View</a></button></p>
       </div>
     </div>
 

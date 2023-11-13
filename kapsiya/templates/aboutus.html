@@ -17,10 +17,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="
     .jumbotron {
       margin-top: 0px;
       margin-bottom: 0px;
+      background-color: #1a405c !important;
     }
 
     .jumbotron h1 {
-      text-align: center;
+      text-align: left;
     }
 
     .alert {
@@ -30,6 +31,43 @@ href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="
     width: 100%;
     height: 100%;
    }
+   .lead{
+    text-align: left;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+  }
+  .img{
+    float: right;
+    padding-bottom: 80px;
+    margin-top: -250px;
+    padding-right: 20%;
+    padding-left: 20%;
+    height: 200px;
+    
+  }
+  .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 200px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+      
+      
+      
+    }
+  grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 5px;
+    /*padding-left: 20%;*/
+    height: 80px;
+    
+  }
+  h4{
+    color: white;
+  }
   </style>
   <title>About Us</title>
 </head>
@@ -37,27 +75,49 @@ href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="
 <body>
   {% include "navbar.html" %}
   <br><br>
-  <center>
-    <h3 class='alert alert-success' style="margin-bottom:0px;">About Us !</h3>
-    <p>Explore our Website.</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="/" role="button">HOME</a>
-    </p>
+  <div class="alert" style="margin-bottom:0px;">
+      
     
-  </center>
+  </div>
   
+  <!--<p class="lead">
+    <h5>Explore our Website.</h5>
+    <a class="btn btn-primary btn-lg" href="/" role="button">HOME</a>
+  </p>-->
     
   <div class="jumbotron" style="margin-bottom: 0px;margin-top: 0px;">
-    <h1>The Journey to Wellness Starts Here</h1>
-    <p class="lead">Whether you're seeking relief, information, or simply a friendly face, Kapsiya Dispensary is your haven. Our doors are open to everyone, and our commitment to your well-being knows no bounds. Join us on this journey to wellness, where every step is a stride towards a healthier, happier life</p>
+    <h3 style="text-align: center; color: white; padding-top: 10px;">About Us</h3><br><br>
+  
+  <h4 style="font-family: Arial, Helvetica, sans-serif; color: white;">Journey to Wellness Starts Here</h4>
+    <br>
+
+    <p style="text-align: left; font-size: medium; color: white; font-family: fantasy;">Whether you're seeking relief, information or simply a friendly face, Kapsiya Dispensary is your haven.<br>Our doors are open to everyone, 
+      and our commitment to your well-being knows no bounds. 
+      <br>Join us on this journey to wellness, 
+      where every step is a stride towards a healthier, happier life</p>
+
+      <div class="img">
+        <img src="{% static 'images/doctoor.jpg' %}"   alt="Joan" style="border-radius: 30px" width="300px;" height="300px";>
+      </div>
+    
     <hr class="my-4">  
   </div>
-  <!--CAROUSEL STARTS HERE-->
-  
-  <!-- Carousel wrapper -->
-  <!--CAROUSEL ENDS HERE-->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+      <br><br>
+    <h3 style="text-align: center; color: white; padding-top: 10px;">Meet Our Doctors</h3><br><br>
+    <div class="grid-container">
+      <div class="grid-item">
+        <div class="card">
+          <img src="{% static 'images/nurse.png'%}" alt="John" style="width:280px;">
+          <p class="title">DOCTOR</p>
+          <p><button><a href="/doctorclick">View</a></button></p>
+        </div>
+      </div>
+    </div>
+</div>
+  <!--{% include "footer.html" %}-->
+
 </body>
-{% include "footer.html" %}
+
 
 </html>
+
