@@ -16,6 +16,26 @@ def home_view(request):
         return HttpResponseRedirect('afterlogin')
     return render (request, 'index.html')
 
+
+#---------------------------------------------------------------------------------
+#------------------------ ABOUT US AND CONTACT US VIEWS START ------------------------------
+#---------------------------------------------------------------------------------
+def aboutus_view(request):
+    return render(request,'aboutus.html')
+
+def contactus_view(request):
+    sub = forms.ContactusForm()
+    if request.method == 'POST':
+        sub = forms.ContactusForm(request.POST)
+        if sub.is_valid():
+            email = sub.cleaned_data['Email']
+            name=sub.cleaned_data['Name']
+            message = sub.cleaned_data['Message']
+            send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
+            return render(request, 'hospital/contactussuccess.html')
+    return render(request, 'hospital/contactus.html', {'form':sub})
+
+
 ##view function for showinng the signup/login button for the admin
 def adminclick_view(request):
     if request.user.is_authenticated:
@@ -128,8 +148,8 @@ def afterlogin_view(request):
         accountapproval=models.Patient.objects.all().filter(user_id=request.user.id,status=True)
         if accountapproval:
             return redirect('patient-dashboard')
-    else:
-        return render(request,'patient_wait_for_approval.html')
+        else:
+            return render(request,'patient_wait_for_approval.html')
 
 ## ADMIN RELATED VIEWS 
 @login_required(login_url='adminlogin')
@@ -323,6 +343,8 @@ def admin_add_patient_view(request):
         return HttpResponseRedirect('admin-view-patient')
     return render(request,'admin_add_patient.html',context=mydict)
 
+
+
 #------------------FOR APPROVING PATIENT BY ADMIN----------------------
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -330,6 +352,23 @@ def admin_approve_patient_view(request):
     #those whose approval are needed
     patients=models.Patient.objects.all().filter(status=False)
     return render(request,'admin_approve_patient.html',{'patients':patients})
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def approve_patient_view(request,pk):
+    patient=models.Patient.objects.get(id=pk)
+    patient.status=True
+    patient.save()
+    return redirect(reverse('admin-approve-patient'))
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def reject_patient_view(request,pk):
+    patient=models.Patient.objects.get(id=pk)
+    user=models.User.objects.get(id=patient.user_id)
+    user.delete()
+    patient.delete()
+    return redirect('admin-approve-patient')
 
 #--------------------- FOR DISCHARGING PATIENT BY ADMIN START-------------------------
 

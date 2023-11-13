@@ -26,7 +26,10 @@ urlpatterns = [
     path('adminclick/', views.adminclick_view),
     path('doctorclick/', views.doctorclick_view),  
     path('patientclick/', views.patientclick_view),
+    path('aboutus', views.aboutus_view),
+    path('contactus', views.contactus_view),
 
+    #url for signup 
     path('adminsignup/', views.admin_signup_view, name='adminsignup'),
     path('adminsignup/adminlogin/', LoginView.as_view(template_name='adminlogin.html')),
     path('adminsignup/adminlogin/adminsignup', views.admin_signup_view, name='adminsignup'),
@@ -36,6 +39,7 @@ urlpatterns = [
     path('patientsignup/', views.patient_signup_view, name='patientsignup'),
     path('patientsignup/patientlogin/', LoginView.as_view(template_name='patientlogin.html')), 
 
+    #urls for login
     path('doctorlogin/', LoginView.as_view(template_name='doctorlogin.html')), 
     path('adminlogin/', LoginView.as_view(template_name='adminlogin.html')),
     path('adminlogin/adminsignup', views.admin_signup_view, name='adminsignup'),
@@ -64,6 +68,8 @@ urlpatterns = [
     path('update-patient/<int:pk>', views.update_patient_view,name='update-patient'),
     path('admin-add-patient', views.admin_add_patient_view,name='admin-add-patient'),
     path('admin-approve-patient', views.admin_approve_patient_view,name='admin-approve-patient'),
+    path('approve-patient/<int:pk>', views.approve_patient_view,name='approve-patient'),
+    path('reject-patient/<int:pk>', views.reject_patient_view,name='reject-patient'),
     path('admin-discharge-patient', views.admin_discharge_patient_view,name='admin-discharge-patient'),
     path('discharge-patient/<int:pk>', views.discharge_patient_view,name='discharge-patient'),
     path('download-pdf/<int:pk>', views.download_pdf_view,name='download-pdf'),
@@ -84,7 +90,7 @@ urlpatterns +=[
     #path('discharge-patient/<int:pk>', views.discharge_patient_view,name='discharge-patient'),
     path('doctor-patient', views.doctor_patient_view,name='doctor-patient'),
     path('doctor-view-patient', views.doctor_view_patient_view,name='doctor-view-patient'),
-    path('doctor-view-discharge-patient',views.doctor_view_discharge_patient_view,name='doctor-view-discharge-patient'),
+    #path('doctor-view-discharge-patient',views.doctor_view_discharge_patient_view,name='doctor-view-discharge-patient'),
 
     #url patterns for the side bar (appointments)
     path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
