@@ -48,7 +48,7 @@ urlpatterns = [
     path('patientsignup/patientlogin/patientsignup/', views.patient_signup_view, name='patientsignup'),
 
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
-    path('logout/', LogoutView.as_view(template_name='index.html'),name='logout'),
+    path('logout/', LogoutView.as_view(template_name='index2.html'),name='logout'),
 
     path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
     #url for the side bar for the doctor

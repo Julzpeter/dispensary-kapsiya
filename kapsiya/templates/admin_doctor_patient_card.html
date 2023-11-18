@@ -7,10 +7,11 @@
   <style>
     .card {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      max-width: 300px;
+      max-width: 200px;
       margin: auto;
       text-align: center;
       font-family: arial;
+      
       
     }
 
@@ -40,9 +41,8 @@
     .grid-container {
       display: grid;
       grid-template-columns: auto auto auto;
-      padding: 4px;
-      /*padding-left: 20%;*/
-      height: 80px;
+      padding-bottom: 10px;
+      
       
     }
 
@@ -53,6 +53,7 @@
     a {
       color: white;
     }
+   
   </style>
 </head>
 
@@ -72,14 +73,14 @@
 
     <div class="grid-item">
       <div class="card">
-        <img src="{% static 'images/nurse.png'%}" alt="John" style="width:280px;">
+        <img src="{% static 'images/nurse.png'%}" alt="John" style="width:100%;">
         <p class="title">DOCTOR</p>
         <p><button><a href="/doctorclick">View</a></button></p>
       </div>
     </div>
     <div class="grid-item">
       <div class="card">
-        <img src="{% static 'images/patients.png'%}" alt="John" style="width:230px;">
+        <img src="{% static 'images/patient.jpg'%}" alt="John" style="width:100%;">
         <p class="title">PATIENT</p>
         <p><button><a href="/patientclick">View</a></button></p>
       </div>

@@ -10,11 +10,12 @@ from datetime import datetime,timedelta,date
 from django.db.models import Q
 from .send_sms import sendsms
 
+
 # Create your views here.
 def home_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
-    return render (request, 'index.html')
+    return render (request, 'index2.html')
 
 
 #---------------------------------------------------------------------------------
@@ -32,8 +33,8 @@ def contactus_view(request):
             name=sub.cleaned_data['Name']
             message = sub.cleaned_data['Message']
             send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
-            return render(request, 'hospital/contactussuccess.html')
-    return render(request, 'hospital/contactus.html', {'form':sub})
+            return render(request, 'contactussuccess.html')
+    return render(request, 'contact2.html', {'form':sub})
 
 
 ##view function for showinng the signup/login button for the admin
