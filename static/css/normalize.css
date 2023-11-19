@@ -10,11 +10,12 @@ Version:	1.1
 # Normalize
 --------------------------------------------------------------*/
 html {
-	 font-family: 'Poppins', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 	text-size-adjust: 100%;
+	color: black;
 }
 html,body {
 	height: 100%;

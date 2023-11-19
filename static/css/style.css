@@ -52,7 +52,7 @@ body{
     font-family: 'Poppins', sans-serif;
 	font-weight: 400;
 	font-size:14px;
-	color:#888;
+	color:black !important;
 }
 .pro-features {
 	position: fixed;
@@ -63,7 +63,7 @@ body{
 	font-size: 14px;
 	background: #fff;
 	text-align: left;
-	color: #333;
+	color: black;
 	top: 50%;
 	transform:translateY(-50%);
 	box-shadow: -4px 0px 5px #00000036;
@@ -99,7 +99,7 @@ body{
 	text-transform: capitalize;
 }
 .pro-features li {
-	color: #333;
+	color: black;
 	margin: 0;
 	padding: 0;
 	line-height: 22px;
@@ -879,7 +879,7 @@ body{
 }
 .Feautes .single-features h3{
 	padding-top: 128px;
-	color:#2C2D3F;
+	color:black;
 	font-weight:600;
 	font-size:21px;
 }

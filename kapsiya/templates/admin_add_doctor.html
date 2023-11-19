@@ -1,12 +1,9 @@
-{% extends 'homebase.html' %}
+{% extends 'admin_base.html' %}
 {% load widget_tweaks %}
 {% block content %}
 
 <head>
   <style media="screen">
-    body{
-        background-color: #ddd0c8 !important;
-    }
     a:link {
       text-decoration: none;
     }
@@ -14,7 +11,7 @@
     .note {
       text-align: center;
       height: 80px;
-      background:#1a405c;
+      background:  #1a76d1;
       color: #fff;
       font-weight: bold;
       line-height: 80px;
@@ -22,8 +19,9 @@
 
     .form-content {
       padding: 5%;
-      border: 1px solid #1a405c;
+      border: 1px solid #1a76d1;
       margin-bottom: 2%;
+      color: black;
     }
 
     .form-control {
@@ -36,12 +34,18 @@
       padding: 1%;
       width: 20%;
       cursor: pointer;
-      background: #1a405c;
+      background: #1a76d1;
       color: #fff;
     }
 
     .menu {
       top: 50px;
+    }
+    .form-control{
+      color: black;
+    }
+    .form-group{
+      color: black;
     }
   </style>
 
@@ -51,54 +55,51 @@
 
 </head>
 <br><br><br>
-<!------ signup page for doctor by admin(james)  ---------->
-<body>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="container register-form">
-          <div class="form">
-            <div class="note">
-              <p>Add New Doctor To the Dispensary</p>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="container register-form">
+    <div class="form">
+      <div class="note">
+        <p>Register Doctor</p>
+      </div>
+      <div class="form-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
             </div>
-            <div class="form-content">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
-                  </div>
-                  <div class="form-group">
-                    {% render_field userForm.username class="form-control" placeholder="Username" %}
-                  </div>
-                  <div class="form-group">
-                    {% render_field doctorForm.department class="form-control" placeholder="Department" %}
-                  </div>
-                  <div class="form-group">
-                    {% render_field doctorForm.address class="form-control" placeholder="Address" %}
-                  </div>
-      
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
-                  </div>
-                  <div class="form-group">
-                    {% render_field userForm.password class="form-control" placeholder="Password" %}
-                  </div>
-                  <div class="form-group">
-                    {% render_field doctorForm.mobile class="form-control"  placeholder="Mobile" %}
-                  </div>
-                  <div class="form-group">
-                    {% render_field doctorForm.profile_pic required="required" class="form-control" placeholder="Profile Picture" %}
-                  </div>
-                </div>
-              </div>
-              <button type="submit" class="btnSubmit">Register</button>
+            <div class="form-group">
+              {% render_field userForm.username class="form-control" placeholder="Username" %}
+            </div>
+            <div class="form-group">
+              {% render_field doctorForm.department class="form-control" placeholder="Department" %}
+            </div>
+            <div class="form-group">
+              {% render_field doctorForm.address class="form-control" placeholder="Address" %}
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
+            </div>
+            <div class="form-group">
+              {% render_field userForm.password class="form-control" placeholder="Password" %}
+            </div>
+            <div class="form-group">
+              {% render_field doctorForm.mobile class="form-control"  placeholder="Mobile" %}
+            </div>
+            <div class="form-group">
+              {% render_field doctorForm.profile_pic required="required" class="form-control" placeholder="Profile Picture" %}
             </div>
           </div>
         </div>
-      
-      </form>
-</body>
+        <button type="submit" class="btnSubmit">Register</button>
+      </div>
+    </div>
+  </div>
 
+</form>
 
 {% endblock content %}
