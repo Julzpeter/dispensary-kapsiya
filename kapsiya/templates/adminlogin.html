@@ -126,19 +126,17 @@
 <br>
 
 <body>
-    <div class="container">
-        <h3 style="text-align: center;">Please Login To Your Account</h3>
+    <div class="container" style="text-align: center;">
+        <h4>Hello Admin, Please Login to your account</h4>
         <div class="jumbotron" style="text-align: center;" style="background-color: #1a76d1 !important;">
             <form method="POST" novalidate>
                 {% csrf_token %}
-                
-                <img src="{% static 'images/admin.png' %}" alt="Kevin" style="width: 10%; height: 10%;">
-                <br>
-                <br>
-
                 {{form.as_p}}
-                <input type="submit" value="Login"/>
-                <div class="text-center">Don't have an account?<a href="adminsignup">Signup here</a></div>
+                <br>
+                <button type="submit" class="btnSubmit">Login</button>
+                <br>
+                <!--<input type="submit" value="Login"/>-->
+                <div style="color: grey;" class="text-center">Don't have an account?<a  style="color: #1a76d1;" href="adminsignup">Signup here</a></div>
             </form>
         </div>
     </div>

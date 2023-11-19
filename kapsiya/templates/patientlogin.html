@@ -168,44 +168,45 @@
   <br>
   <br><br>
 <div class="container" style="text-align: center;">
-<h4>Please Login to your account</h4>
+<h4>Hello Patient, Please Login to your account</h4>
   <div class="jumbotron">
     <div class="form-content" style="color: black !important;">
-      <form method="POST" novalidate>
+      <form method="post">
+        {% csrf_token %}
+        <div class="container register-form">
+          <div class="form">
+            <div class="form-content">
+              <div class="row">
+                <div class="col-md-6" >
+                  <div class="form-group">
+                    {% render_field form.username class="form-control" placeholder="Username" %}
+                  </div>
+                  <div class="form-group">
+                    {% render_field form.password class="form-control" placeholder="Password" %}
+                </div>
+                </div>
+                
+              </div>
+              <button type="submit" class="btnSubmit">Login</button>
+              <div style="color: grey;"  class="text-center">Don't have an account? <a  style="color: #1a76d1;"href="patientsignup">Signup here</a></div>
+            </div>
+          </div>
+        </div>
+    
+      </form>
+      <!--<form method="POST" novalidate>
           {% csrf_token %}
           {{form.as_p}}
           <br>
 
           <button type="submit" class="btnSubmit">Login</button>
           <br>
-          <!--<input type="submit" value="Login"/>--->
+          <input type="submit" value="Login"/>
           <div style="color: grey;" class="text-center">Don't have an account? <a style="color: #1a76d1;"href="patientsignup">Signup here</a></div>
-      </form>
+      </form>--->
   </div>
   
-   <!---- <form method="post">
-      {% csrf_token %}
-      <div class="container register-form">
-        <div class="form">
-          <div class="form-content">
-            <div class="row">
-              <div class="col-md-6" >
-                <div class="form-group">
-                  {% render_field form.username class="form-control" placeholder="Username" %}
-                </div>
-                <div class="form-group">
-                  {% render_field form.password class="form-control" placeholder="Password" %}
-              </div>
-              </div>
-              
-            </div>
-            <button type="submit" class="btnSubmit">Login</button>
-            <div class="text-center">Don't have an account? <a href="patientsignup">Signup here</a></div>
-          </div>
-        </div>
-      </div>
   
-    </form>-->
   
 
   </div>

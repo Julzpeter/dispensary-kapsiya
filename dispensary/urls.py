@@ -44,7 +44,7 @@ urlpatterns = [
     path('adminlogin/', LoginView.as_view(template_name='adminlogin.html')),
     path('adminlogin/adminsignup', views.admin_signup_view, name='adminsignup'),
     path('patientlogin/', LoginView.as_view(template_name='patientlogin.html')),
-    path('patientlogin/patientsignup', views.patient_signup_view, name='patientsignup'),
+    #path('patientlogin/patientsignup', views.patient_signup_view, name='patientsignup'),
     path('patientsignup/patientlogin/patientsignup/', views.patient_signup_view, name='patientsignup'),
 
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
@@ -76,7 +76,8 @@ urlpatterns = [
     #url for the side bar for the appointment
     path('admin-appointment',views.admin_appointment_view, name='admin-appointment'),
     path('admin-view-appointment', views.admin_view_appointment_view,name='admin-view-appointment'),
-    path('admin-add-appointment', views.admin_add_appointment_view,name='admin-add-appointment'),
+    path('admin-add-appointment', views.admin_add_appointment_views,name='admin-add-appointment'),#added the s after view to differentiate it from the new url
+    path('add-appointment', views.admin_add_appointment_view,name='add-appointment'),#the new urls for the index page, for visitors
     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     
 ]
@@ -90,7 +91,7 @@ urlpatterns +=[
     #path('discharge-patient/<int:pk>', views.discharge_patient_view,name='discharge-patient'),
     path('doctor-patient', views.doctor_patient_view,name='doctor-patient'),
     path('doctor-view-patient', views.doctor_view_patient_view,name='doctor-view-patient'),
-    #path('doctor-view-discharge-patient',views.doctor_view_discharge_patient_view,name='doctor-view-discharge-patient'),
+    path('doctor-view-discharge-patient',views.doctor_view_discharge_patient_view,name='doctor-view-discharge-patient'),
 
     #url patterns for the side bar (appointments)
     path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
@@ -101,4 +102,6 @@ urlpatterns +=[
 ]
 
 #----------FOR PATIENT RELATED URLS--------------------------
-
+urlpatterns +=[
+    path('patient-dashboard', views.patient_dashboard_view,name='patient-dashboard'),
+]

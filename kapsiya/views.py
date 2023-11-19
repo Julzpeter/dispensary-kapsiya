@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from .forms import AdminSignUpForm,DoctorUserForm
+from .forms import AdminSignUpForm,DoctorUserForm,ContactForm
 from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
@@ -9,6 +9,8 @@ from . import models,forms
 from datetime import datetime,timedelta,date
 from django.db.models import Q
 from .send_sms import sendsms
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 
 # Create your views here.
@@ -25,16 +27,23 @@ def aboutus_view(request):
     return render(request,'aboutus.html')
 
 def contactus_view(request):
-    sub = forms.ContactusForm()
     if request.method == 'POST':
-        sub = forms.ContactusForm(request.POST)
-        if sub.is_valid():
-            email = sub.cleaned_data['Email']
-            name=sub.cleaned_data['Name']
-            message = sub.cleaned_data['Message']
-            send_mail(str(name)+' || '+str(email),message,settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
-            return render(request, 'contactussuccess.html')
-    return render(request, 'contact2.html', {'form':sub})
+        form = forms.ContactForm(request.POST)
+        
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+           
+            html = render_to_string('contactform.html',{
+                'name': name,
+                'email': email,
+                'message': message
+            })
+            send_mail('The contact form subject', 'This is the message','koechjuliet545@gmail.com',['chemetyojulz@gmail.com'],html_message=html)
+    else:
+        form=ContactForm()   
+    return render(request, 'contact2.html', {'form':form})
 
 
 ##view function for showinng the signup/login button for the admin
@@ -440,7 +449,7 @@ def admin_view_appointment_view(request):
   
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
-def admin_add_appointment_view(request):
+def admin_add_appointment_views(request):
     appointmentForm=forms.AppointmentForm()
     mydict={'appointmentForm':appointmentForm,}
     if request.method=='POST':
@@ -457,6 +466,22 @@ def admin_add_appointment_view(request):
         return HttpResponseRedirect('admin-view-appointment')
     return render(request,'admin_add_appointment.html',context=mydict)
 
+def admin_add_appointment_view(request):
+    appointmentForm=forms.AppointmentForm()
+    mydict={'appointmentForm':appointmentForm,}
+    if request.method=='POST':
+        appointmentForm=forms.AppointmentForm(request.POST)
+        if appointmentForm.is_valid():
+            appointment=appointmentForm.save(commit=False)
+            appointment.doctorId=request.POST.get('doctorId')
+            appointment.patientId=request.POST.get('patientId')
+            appointment.doctorName=models.User.objects.get(id=request.POST.get('doctorId')).first_name
+            appointment.patientName=models.User.objects.get(id=request.POST.get('patientId')).first_name
+            appointment.status=True
+            appointment.save()
+            sendsms() 
+
+    return render(request,'admin_add_appointment.html',context=mydict)
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_approve_appointment_view(request):
@@ -683,3 +708,20 @@ def download_pdf_view(request, pk):
         'total':dischargeDetails[0].total,
     }
     return render_to_pdf('download_bill.html',dict)
+
+
+@login_required(login_url='patientlogin')
+@user_passes_test(is_patient)
+def patient_dashboard_view(request):
+    patient=models.Patient.objects.get(user_id=request.user.id)
+    nurse = models.Nurse.objects.get(user_id=patient.assignedDoctorId)
+    mydict={
+        'patient':patient,
+        'nurseName':nurse.get_name,
+        'nurseMobile':nurse.mobile,
+        'nurseAddress':nurse.address,
+        'symptoms': patient.symptoms,
+        'admitDate':patient.admitDate,
+
+    }
+    return render(request, patient_dashboard.html,context=mydict)

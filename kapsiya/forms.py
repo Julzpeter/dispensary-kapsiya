@@ -46,7 +46,7 @@ class AppointmentForm(forms.ModelForm):
         model=models.Appointment
         fields=['description','status']
 
-class ContactusForm(forms.Form):
-    Name = forms.CharField(max_length=30)
-    Email = forms.EmailField()
-    Message = forms.CharField(max_length=500,widget=forms.Textarea(attrs={'rows': 3, 'cols': 30}))
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=255)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)
