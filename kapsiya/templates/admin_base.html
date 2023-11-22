@@ -5,14 +5,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Dispensary</title>
-
+  <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+  
+  <!-- Kapsiya CSS -->
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  
 
 
   <style media="screen">
@@ -29,17 +31,12 @@
     }
 
 
-
-
-    /*---------------------------------------
-       Social section
-    -----------------------------------------*/
     footer {
       padding: 0px 0px 0px 0px;
-      background-color: black;
+      background-color: #3B5998;
       margin: 0px;
     }
-
+    
 
     #ftr {
 
@@ -62,7 +59,7 @@
     }
 
     .fa-facebook {
-      background: #3B5998;
+      background: #55ACEE;
       color: white;
       margin-top: 30px;
     }
@@ -86,11 +83,6 @@
       text-align: center;
 
     }
-
-
-
-
-
     body {
 
       padding-left: 240px;
@@ -125,6 +117,16 @@
     .menu .avatar h2 {
       font-weight: normal;
       margin-bottom: 0;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 100px;
+      margin: 0;
+      min-width: 200px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.4);
+      transform: translate3d(-20px, -50%, 0);
+      transition: all 0.15s ease-in-out;
     }
     .menu ul {
       list-style: none;
@@ -312,9 +314,6 @@
       </nav>
     </div>
     <!-- nav end -->
-
-
-
     <br><br>
 
     <!-- content start-->
@@ -324,6 +323,7 @@
     <!-- content end-->
 
     <br><br><br><br>
+    
     <footer>
       <p>
         <a id="ftr" href="https://facebook.com/" class="fa fa-facebook"></a>
@@ -331,18 +331,52 @@
         <a id="ftr" href="https://instagram.com/" class="fa fa-instagram"></a>
         <a id="ftr" href="https://twitter.com/" class="fa fa-twitter"></a>
       </p>
-
       <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-sm-12">
-            <div style="color:#ffffff;" class="wow fadeInUp footer-copyright">
-              <p>Made in Kenya <br>
-                Copyright &copy; 2023 Juliet Koech </p>
+      <br>
+      <section style="color: white;">
+        <div class="container">
+          <div class="row">
+            <div class="col-md" style="float: left;">
+              <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fa-duotone fa-hospital">Kapsiya Dispensary</i>
+              </h6>
+              <p>
+                At Kapsiya, we're dedicated to enhancing your well being through a holistic approach to health.<br>
+                Founded on the belief that wellness extends beyond mere treatment.<br> Our mission is to empore you on your journey towards optimal health and vitality.
+              </p> 
+            </div>
+            <br>
+            <div class="col-md">
+              <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fa-duotone fa-hospital">Opening Hours</i>
+              </h6>
+              <p>
+                <ul class="time-sidual">
+                  <li class="day">Monday - Friday<span>8.00-20.00</span></li>
+                  <li class="day">Saturday <span>Closed</span></li>
+                  <li class="day">Sunday <span>Closed</span></li>
+                  <li class="day">Public Holidays<span>Closed</span></li>
+                </ul>
+              </p>
+            </div>
+            <div class="col-md">
+              <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fa-duotone fa-hospital">Opening Hours</i>
+              </h6>
+              <p>
+                <ul class="time-sidual">
+                  <li class="day">Monday - Friday<span>8.00-20.00</span></li>
+                  <li class="day">Saturday <span>Closed</span></li>
+                  <li class="day">Sunday <span>Closed</span></li>
+                  <li class="day">Public Holidays<span>Closed</span></li>
+                </ul>
+              </p>
             </div>
           </div>
         </div>
-      </div>
+        </section>
+      <br>
+ 
     </footer>
 
   </main>

@@ -3948,18 +3948,18 @@ body{
 	End About Us CSS
 ===========================*/
 
-/*=========================
+	/*=========================
 	Start Footer CSS
-===========================*/
-.footer{
+	===========================*/
+	.footer{
 	position:relative;
-}
-.footer .footer-top{
+	}
+	.footer .footer-top{
 	padding:100px 0px;
 	position:relative;
 	background:#1A76D1;
-}
-.footer .footer-top:before{
+	}
+	.footer .footer-top:before{
 	position:absolute;
 	content:"";
 	left:0;
@@ -3968,19 +3968,19 @@ body{
 	width:100%;
 	background:#000;
 	opacity:0.1;
-}
+	}
 
-.footer .single-footer .social{
+	.footer .single-footer .social{
 	margin-top:25px;
-}
-.footer .single-footer .social li{
+	}
+	.footer .single-footer .social li{
 	display:inline-block;
 	margin-right:10px;
-}
-.footer .single-footer .social li:last-child{
+	}
+	.footer .single-footer .social li:last-child{
 	margin-right:0px;
-}
-.footer .single-footer .social li a {
+	}
+	.footer .single-footer .social li a {
 	height: 34px;
 	width: 34px;
 	line-height: 34px;
@@ -3992,24 +3992,24 @@ body{
 	display: block;
 	color:#fff;
 	font-size: 16px;
-}
-.footer .single-footer .social li a:hover{
+	}
+	.footer .single-footer .social li a:hover{
 	color:#1A76D1;
 	background:#fff;
 	border-color:transparent;
-}
+	}
 
-.footer .single-footer.f-link li a i{
+	.footer .single-footer.f-link li a i{
 	margin-right:10px;
-}
-.footer .single-footer.f-link li{
+	}
+	.footer .single-footer.f-link li{
 	display:block;
 	margin-bottom:12px;
-}
-.footer .single-footer.f-link li:last-child{
+	}
+	.footer .single-footer.f-link li:last-child{
 	margin:0;
-}
-.footer .single-footer.f-link li a {
+	}
+	.footer .single-footer.f-link li a {
 	display: block;
 	color: #fff;
 	text-transform: capitalize;
@@ -4017,11 +4017,11 @@ body{
 	-moz-transition: all 0.4s ease;
 	transition: all 0.4s ease;
 	font-weight: 400;
-}
-.footer .single-footer.f-link li a:hover{
+	}
+	.footer .single-footer.f-link li a:hover{
 	padding-left:8px;
-}
-.footer .single-footer h2{
+	}
+	.footer .single-footer h2{
 	color:#fff;
 	font-size:20px;
 	font-weight:600;
@@ -4030,8 +4030,8 @@ body{
 	padding-bottom:20px;
 	text-transform:capitalize;
 	position:relative;
-}
-.footer .single-footer h2::before{
+	}
+	.footer .single-footer h2::before{
 	position: absolute;
 	content: "";
 	left: 0;
@@ -4039,35 +4039,35 @@ body{
 	height: 3px;
 	width: 50px;
 	background: #fff;
-}
-.footer .single-footer .time-sidual{
+	}
+	.footer .single-footer .time-sidual{
 	margin-top:15px;
-}
-.footer .single-footer .time-sidual{
+	}
+	.footer .single-footer .time-sidual{
 	overflow:hidden;
-}
-.footer .single-footer .time-sidual li {
+	}
+	.footer .single-footer .time-sidual li {
 	display: block;
 	color: #fff;
 	width: 100%;
 	margin-bottom: 5px;
-}
-.footer .single-footer .time-sidual li span{
+	}
+	.footer .single-footer .time-sidual li span{
 	display:inline-block;
 	/*float:right;*/
-}
-.footer .single-footer .day-head .time {
+	}
+	.footer .single-footer .day-head .time {
 	font-weight: 400;
 	float: right;
-}
-.footer .single-footer p{
+	}
+	.footer .single-footer p{
 	color:#fff;
-}
-.footer .single-footer .newsletter-inner{
+	}
+	.footer .single-footer .newsletter-inner{
 	margin-top:20px;
 	position:relative;
-}
-.footer .single-footer .newsletter-inner input {
+	}
+	.footer .single-footer .newsletter-inner input {
 	background: transparent;
 	border: 1px solid #fff;
 	height: 50px;
@@ -4085,29 +4085,29 @@ body{
 	transition: all 0.4s ease;
 	font-weight: 400;
 	border-radius: 5px;
-}
-.footer .single-footer .newsletter-inner input:hover{
+	}
+	.footer .single-footer .newsletter-inner input:hover{
 	padding-left: 22px;
-}
-.footer input::-webkit-input-placeholder {
-    opacity: 1;
-    color: #fff !important;
-}
+	}
+	.footer input::-webkit-input-placeholder {
+	opacity: 1;
+	color: #fff !important;
+	}
 
-.footer input::-moz-placeholder {
-    opacity: 1;
-    color: #fff !important;
-}
+	.footer input::-moz-placeholder {
+	opacity: 1;
+	color: #fff !important;
+	}
 
-.footer input::-ms-input-placeholder {
-    opacity: 1;
-    color: #fff !important;
-}
-.footer input::input-placeholder {
-    opacity: 1;
-    color: #fff !important;
-}
-.footer .single-footer .newsletter-inner .button {
+	.footer input::-ms-input-placeholder {
+	opacity: 1;
+	color: #fff !important;
+	}
+	.footer input::input-placeholder {
+	opacity: 1;
+	color: #fff !important;
+	}
+	.footer .single-footer .newsletter-inner .button {
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -4127,30 +4127,30 @@ body{
 	border-radius: 0 5px 5px 0;
 	color: #1A76D1;
 	font-size: 25px;
-}
-.footer .single-footer .newsletter-inner .button i{
+	}
+	.footer .single-footer .newsletter-inner .button i{
 	-webkit-transition:all 0.4s ease;
 	-moz-transition:all 0.4s ease;
 	transition:all 0.4s ease;
-}
-.footer .single-footer .newsletter-inner .button:hover i{
+	}
+	.footer .single-footer .newsletter-inner .button:hover i{
 	color:#2C2D3F;
-}
-.footer .copyright{
+	}
+	.footer .copyright{
 	background:#1A76D1;
 	padding:25px 0px 25px 0px;
 	text-align:center;
-}
-.footer .copyright .copyright-content p{
+	}
+	.footer .copyright .copyright-content p{
 	color:#fff;
-}
-.footer .copyright .copyright-content p a{
+	}
+	.footer .copyright .copyright-content p a{
 	color:#fff;
 	font-weight:400;
 	text-decoration:underline;
 	display:inline-block;
 	margin-left:4px;
-}
-/*=========================
+	}
+	/*=========================
 	End Footer CSS
-===========================*/
+	===========================*/

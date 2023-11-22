@@ -12,7 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
 
 
 
@@ -37,16 +37,52 @@
     -----------------------------------------*/
     footer {
       padding: 0px 0px 0px 0px;
-      background-color: white;
+      background-color: #3B5998;
       margin: 0px;
       color: black;
     }
+    .fa-facebook {
+      background: #55ACEE;
+      color: white;
+      margin-top: 30px;
+    }
+
+    .fa-whatsapp {
+      background: #25d366;
+      color: white;
+    }
+
+    .fa-twitter {
+      background: #55ACEE;
+      color: white;
+    }
+
+    .fa-instagram {
+      background: #125688;
+      color: white;
+    }
+
 
 
     #ftr {
 
       padding: 20px;
     }
+    .fa {
+
+      font-size: 23px;
+      width: 60px;
+      text-align: center;
+      text-decoration: none;
+      margin: 5px 2px;
+      border-radius: 50%;
+  }
+
+    .fa:hover {
+      opacity: 0.5;
+      text-decoration: none;
+  }
+
 
     
     p {
@@ -277,18 +313,58 @@
     <!-- content end-->
     <br><br><br><br><br><br><br>
     <footer>
+      <p>
+        <a id="ftr" href="https://facebook.com/" class="fa fa-facebook"></a>
+        <a id="ftr" href="https://api.whatsapp.com/send?phone=919572181024&text=Hello%20Sumit.%0d%0aHow%20are%20you%20%3f%0d%0aI%20came%20from%20your%20website.&source=&data=#" class="fa fa-whatsapp"></a>
+        <a id="ftr" href="https://instagram.com/" class="fa fa-instagram"></a>
+        <a id="ftr" href="https://twitter.com/" class="fa fa-twitter"></a>
+      </p>
       
       <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-sm-12">
-            <div style="color:black;" class="wow fadeInUp footer-copyright">
-              <p>Made in Kenya <br>
-                Copyright &copy; 2023 JulietKoech </p>
+      <br>
+      <section style="color: white;">
+        <div class="container">
+          <div class="row">
+            <div class="col-md" style="float: left;">
+              <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fa-duotone fa-hospital">Kapsiya Dispensary</i>
+              </h6>
+              <p>
+                At Kapsiya, we're dedicated to enhancing your well being through a holistic approach to health.<br>
+                Founded on the belief that wellness extends beyond mere treatment.<br> Our mission is to empore you on your journey towards optimal health and vitality.
+              </p> 
+            </div>
+            <br>
+            <div class="col-md">
+              <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fa-duotone fa-hospital">Opening Hours</i>
+              </h6>
+              <p>
+                <ul class="time-sidual">
+                  <li class="day">Monday - Friday<span>8.00-20.00</span></li>
+                  <li class="day">Saturday <span>Closed</span></li>
+                  <li class="day">Sunday <span>Closed</span></li>
+                  <li class="day">Public Holidays<span>Closed</span></li>
+                </ul>
+              </p>
+            </div>
+            <div class="col-md">
+              <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fa-duotone fa-hospital">Opening Hours</i>
+              </h6>
+              <p>
+                <ul class="time-sidual">
+                  <li class="day">Monday - Friday<span>8.00-20.00</span></li>
+                  <li class="day">Saturday <span>Closed</span></li>
+                  <li class="day">Sunday <span>Closed</span></li>
+                  <li class="day">Public Holidays<span>Closed</span></li>
+                </ul>
+              </p>
             </div>
           </div>
         </div>
-      </div>
+        </section>
+      <br>
     </footer>
   </main>
   <!-- partial -->
