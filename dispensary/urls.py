@@ -26,7 +26,7 @@ urlpatterns = [
     path('adminclick/', views.adminclick_view),
     path('doctorclick/', views.doctorclick_view),  
     path('patientclick/', views.patientclick_view),
-    path('aboutus', views.aboutus_view),
+    #path('aboutus', views.aboutus_view),
     path('contactus', views.contactus_view),
 
     #url for signup 

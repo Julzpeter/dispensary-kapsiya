@@ -27,7 +27,7 @@ class DoctorForm(forms.ModelForm):
 class PatientUserForm(forms.ModelForm):
     class Meta:
         model=User
-        fields=['first_name','last_name','username','password']
+        fields=['first_name','last_name','username']
         widgets = {
         'password': forms.PasswordInput()
         }
@@ -35,7 +35,7 @@ class PatientForm(forms.ModelForm):
     #this is the extrafield for linking patient and their assigend doctor
     #this will show dropdown __str__ method doctor model is shown on html so override it
     #to_field_name this will fetch corresponding value  user_id present in Doctor model and return it
-    assignedDoctorId=forms.ModelChoiceField(queryset=models.Nurse.objects.all().filter(status=True),empty_label="Nurse's Name", to_field_name="user_id")
+    assignedDoctorId=forms.ModelChoiceField(queryset=models.Nurse.objects.all().filter(status=True),empty_label="Doctor's Name", to_field_name="user_id")
     class Meta:
         model=models.Patient
         fields=['address','mobile','status','symptoms','profile_pic']
